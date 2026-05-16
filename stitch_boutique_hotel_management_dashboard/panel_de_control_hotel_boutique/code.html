@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Panel de Control LuxeStay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f6faf8",
+                    "secondary": "#4e6073",
+                    "on-primary-fixed": "#00201d",
+                    "on-secondary-fixed-variant": "#36485b",
+                    "tertiary-fixed": "#ebe2c8",
+                    "secondary-container": "#cfe2f9",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e4e9e7",
+                    "surface-bright": "#f6faf8",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#00504a",
+                    "on-surface-variant": "#3d4947",
+                    "on-tertiary-fixed-variant": "#4c4733",
+                    "inverse-surface": "#2c3130",
+                    "on-tertiary-container": "#403c29",
+                    "inverse-primary": "#71d7cd",
+                    "tertiary-fixed-dim": "#cec6ad",
+                    "surface-container-low": "#f0f5f3",
+                    "surface-container": "#eaefed",
+                    "primary": "#006a63",
+                    "on-primary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#bdc9c6",
+                    "surface-dim": "#d6dbd9",
+                    "surface": "#f6faf8",
+                    "secondary-fixed-dim": "#b5c8df",
+                    "surface-variant": "#dfe3e2",
+                    "primary-fixed-dim": "#71d7cd",
+                    "outline": "#6d7a77",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#006a63",
+                    "on-surface": "#171d1c",
+                    "tertiary": "#645e49",
+                    "secondary-fixed": "#d1e4fb",
+                    "primary-container": "#4db6ac",
+                    "surface-container-highest": "#dfe3e2",
+                    "primary-fixed": "#8ef4e9",
+                    "on-tertiary-fixed": "#1f1c0b",
+                    "on-primary-container": "#00433f",
+                    "on-secondary-fixed": "#091d2e",
+                    "on-secondary-container": "#526478",
+                    "inverse-on-surface": "#edf2f0",
+                    "tertiary-container": "#ada68e",
+                    "on-error-container": "#93000a",
+                    "on-background": "#171d1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "16px",
+                    "sidebar-width": "260px",
+                    "container-padding": "24px",
+                    "max-content-width": "1440px"
+            },
+            "fontFamily": {
+                    "title-sm": ["Plus Jakarta Sans"],
+                    "label-caps": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "data-table": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "title-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "data-table": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-surface-container-lowest dark:bg-inverse-surface shadow-[4px_0px_20px_rgba(0,0,0,0.05)] flex flex-col py-unit gap-2 z-50">
+<div class="px-gutter py-4 mb-4">
+<h1 class="font-display-lg text-display-lg text-primary dark:text-primary-fixed">LuxeStay</h1>
+<p class="font-label-caps text-label-caps text-secondary opacity-70">Gestión Boutique</p>
+</div>
+<nav class="flex-1 space-y-1 px-2">
+<!-- Panel de Control Activo -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container dark:bg-primary-fixed-dim text-on-primary-container dark:text-on-primary-fixed rounded-r-full border-l-4 border-primary duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-caps text-label-caps">Panel de Control</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-secondary-container transition-all duration-200 ease-in-out rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="bed">bed</span>
+<span class="font-label-caps text-label-caps">Habitaciones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-secondary-container transition-all duration-200 ease-in-out rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-caps text-label-caps">Reservas</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-secondary-container transition-all duration-200 ease-in-out rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-caps text-label-caps">Clientes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed-dim hover:bg-surface-container-high dark:hover:bg-secondary-container transition-all duration-200 ease-in-out rounded-r-full" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-caps text-label-caps">Facturación</span>
+</a>
+</nav>
+<div class="mt-auto px-4 pb-4 space-y-1">
+<button class="w-full py-3 px-4 bg-primary text-on-primary font-bold rounded-lg mb-4 cursor-pointer active:scale-95 transition-transform">
+            Nueva Reserva
+        </button>
+<a class="flex items-center gap-3 px-4 py-2 text-secondary dark:text-secondary-fixed-dim font-label-caps text-label-caps hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+            Soporte
+        </a>
+<a class="flex items-center gap-3 px-4 py-2 text-secondary dark:text-secondary-fixed-dim font-label-caps text-label-caps hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+            Cerrar Sesión
+        </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[260px] min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline shadow-sm flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-low border-none rounded-full w-64 text-body-sm focus:ring-2 focus:ring-primary/20" placeholder="Buscar reservaciones..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low p-2 rounded-full transition-colors cursor-pointer" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low p-2 rounded-full transition-colors cursor-pointer" data-icon="help">help</button>
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-low p-2 rounded-full transition-colors cursor-pointer" data-icon="settings">settings</button>
+</div>
+<div class="flex items-center gap-3">
+<img alt="Perfil del Gerente" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A professional hotel manager in a sharp navy suit looking friendly and approachable, set against a blurred luxury hotel lobby background with warm ambient lighting. The portrait is high-quality with a soft focus on the background, conveying a high-end concierge experience in light mode." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKnhyC8CT5HZde6uJxvX8jm6RhZEuMcFcfA34j6kGxcqyWctgtJqFJ7jR4bzbVUTvxxm3zx1-D0pjzbQMNmOJtugNH0cZwWvJflEg6REBhh6zxYbxvnsGSwgi2nZ5YWVTMMXYkCUVnMAlKt6lUQoZdcFH2lBGqRdHD5GPq2E3KTbrf4D7qvIpgZKein-dV860w2KM_NdHj08P0YvUhH3FbCkNWyB_5sjG8eFFmbzTxirCe2468GA_8lUGUoanjNPV47rp9Wv1PFULC"/>
+<span class="font-body-md text-body-md text-primary">Julian Rossi</span>
+</div>
+</div>
+</header>
+<div class="p-container-padding max-w-max-content-width mx-auto">
+<!-- Analytics Cards Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-8">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="percent">percent</span>
+</div>
+<span class="text-primary font-bold text-body-sm">+4.2%</span>
+</div>
+<p class="text-secondary font-label-caps text-label-caps mb-1">Tasa de Ocupación</p>
+<h3 class="font-display-lg text-display-lg">84.2%</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-container/30 rounded-lg text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="login">login</span>
+</div>
+<span class="text-secondary font-bold text-body-sm">12 Restantes</span>
+</div>
+<p class="text-secondary font-label-caps text-label-caps mb-1">Check-ins de Hoy</p>
+<h3 class="font-display-lg text-display-lg">18</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary-container/20 rounded-lg text-tertiary">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<span class="text-primary font-bold text-body-sm">+18%</span>
+</div>
+<p class="text-secondary font-label-caps text-label-caps mb-1">Ingresos (Diarios)</p>
+<h3 class="font-display-lg text-display-lg">$4,280</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-error-container/40 rounded-lg text-error">
+<span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
+</div>
+<span class="text-error font-bold text-body-sm">Urgente</span>
+</div>
+<p class="text-secondary font-label-caps text-label-caps mb-1">Pagos Pendientes</p>
+<h3 class="font-display-lg text-display-lg">04</h3>
+</div>
+</div>
+<!-- Middle Section: Room Grid and Booking Form -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mb-8">
+<!-- Room Status Grid -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-6 rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md text-on-surface">Resumen de Estado de Habitaciones</h2>
+<div class="flex gap-4">
+<div class="flex items-center gap-1.5 text-body-sm"><span class="w-3 h-3 rounded-full bg-primary"></span> Disponible</div>
+<div class="flex items-center gap-1.5 text-body-sm"><span class="w-3 h-3 rounded-full bg-error"></span> Ocupada</div>
+<div class="flex items-center gap-1.5 text-body-sm"><span class="w-3 h-3 rounded-full bg-tertiary"></span> Limpieza</div>
+</div>
+</div>
+<div class="grid grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3">
+<!-- 101-108 -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-error bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">101</span>
+<span class="text-[10px] text-error font-bold">OCUP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-primary bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">102</span>
+<span class="text-[10px] text-primary font-bold">DISP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-tertiary bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">103</span>
+<span class="text-[10px] text-tertiary font-bold">LIMP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-error bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">104</span>
+<span class="text-[10px] text-error font-bold">OCUP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-primary bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">105</span>
+<span class="text-[10px] text-primary font-bold">DISP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-primary bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">106</span>
+<span class="text-[10px] text-primary font-bold">DISP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-error bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">107</span>
+<span class="text-[10px] text-error font-bold">OCUP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-primary bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">108</span>
+<span class="text-[10px] text-primary font-bold">DISP</span>
+</div>
+<!-- 201-208 -->
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-error bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">201</span>
+<span class="text-[10px] text-error font-bold">OCUP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-tertiary bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">202</span>
+<span class="text-[10px] text-tertiary font-bold">LIMP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-primary bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">203</span>
+<span class="text-[10px] text-primary font-bold">DISP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-error bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">204</span>
+<span class="text-[10px] text-error font-bold">OCUP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-primary bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">205</span>
+<span class="text-[10px] text-primary font-bold">DISP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-primary bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">206</span>
+<span class="text-[10px] text-primary font-bold">DISP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-error bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">207</span>
+<span class="text-[10px] text-error font-bold">OCUP</span>
+</div>
+<div class="aspect-square flex flex-col items-center justify-center rounded-lg border-t-4 border-primary bg-surface-container-low group cursor-pointer hover:shadow-md transition-all">
+<span class="font-bold text-body-sm">208</span>
+<span class="text-[10px] text-primary font-bold">DISP</span>
+</div>
+</div>
+</div>
+<!-- New Booking Form Module -->
+<div class="lg:col-span-5 bg-surface-container-lowest p-6 rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Reserva Rápida</h2>
+<div class="space-y-4 flex-1">
+<div>
+<label class="block font-label-caps text-label-caps text-secondary mb-1">Nombre del Cliente</label>
+<input class="w-full border border-outline-variant rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="ej. Elena Gilbert" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-caps text-label-caps text-secondary mb-1">Tipo de Habitación</label>
+<select class="w-full border border-outline-variant rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all">
+<option>Suite Deluxe</option>
+<option>Vista al Mar</option>
+<option>Estándar King</option>
+<option>Twin Boutique</option>
+</select>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-secondary mb-1">Noches</label>
+<input class="w-full border border-outline-variant rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" min="1" type="number" value="1"/>
+</div>
+</div>
+<!-- Decameron-style Extras -->
+<div class="bg-surface-container-low p-4 rounded-lg">
+<h4 class="font-label-caps text-label-caps text-primary mb-3">Extras Estilo Decameron</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="text-body-sm text-secondary group-hover:text-primary transition-colors">Plan de Comidas Buffet</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="text-body-sm text-secondary group-hover:text-primary transition-colors">Amenidades Premium</span>
+</label>
+</div>
+</div>
+<!-- Live Price Summary -->
+<div class="border-t border-outline-variant pt-4 mt-auto">
+<div class="flex justify-between items-center bg-primary/5 p-4 rounded-lg border border-primary/10">
+<div>
+<p class="text-body-sm text-secondary">Base + Comida + Extras</p>
+<p class="font-bold text-primary">Monto Total</p>
+</div>
+<div class="text-right">
+<span class="font-display-lg text-display-lg text-primary">$345.00</span>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-bold py-3 rounded-lg hover:bg-primary/90 active:scale-95 transition-all mt-4">
+                        Confirmar Reserva
+                    </button>
+</div>
+</div>
+</div>
+<!-- Recent Bookings Data Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.05)] border border-outline-variant/30 overflow-hidden">
+<div class="p-6 border-b border-outline-variant">
+<h2 class="font-headline-md text-headline-md text-on-surface">Reservas Recientes</h2>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 font-label-caps text-label-caps text-secondary">Cliente</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-secondary">Habitación</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-secondary">Check-In</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-secondary">Total</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-secondary">Estado de Pago</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-secondary">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-[12px]">MS</div>
+<span class="font-data-table text-data-table text-on-surface">Marcus Sterling</span>
+</td>
+<td class="px-6 py-4 font-data-table text-data-table text-secondary">Suite 104</td>
+<td class="px-6 py-4 font-data-table text-data-table text-secondary">24 Oct, 2023</td>
+<td class="px-6 py-4 font-data-table text-data-table font-bold">$1,240.00</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-3 font-data-table text-data-table text-primary">Pagado</span>
+</label>
+</td>
+<td class="px-6 py-4">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-[12px]">LW</div>
+<span class="font-data-table text-data-table text-on-surface">Lydia Whitmore</span>
+</td>
+<td class="px-6 py-4 font-data-table text-data-table text-secondary">Habitación 205</td>
+<td class="px-6 py-4 font-data-table text-data-table text-secondary">25 Oct, 2023</td>
+<td class="px-6 py-4 font-data-table text-data-table font-bold">$680.00</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-3 font-data-table text-data-table text-secondary">Pendiente</span>
+</label>
+</td>
+<td class="px-6 py-4">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-bold text-[12px]">BK</div>
+<span class="font-data-table text-data-table text-on-surface">Bastien Kolsen</span>
+</td>
+<td class="px-6 py-4 font-data-table text-data-table text-secondary">Suite 107</td>
+<td class="px-6 py-4 font-data-table text-data-table text-secondary">25 Oct, 2023</td>
+<td class="px-6 py-4 font-data-table text-data-table font-bold">$2,100.00</td>
+<td class="px-6 py-4">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ml-3 font-data-table text-data-table text-primary">Pagado</span>
+</label>
+</td>
+<td class="px-6 py-4">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</body></html>

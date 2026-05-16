@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#00433f",
+                    "on-secondary-fixed-variant": "#204877",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-container": "#eceef0",
+                    "surface": "#f7f9fb",
+                    "on-secondary-container": "#2e5484",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#bdc9c6",
+                    "inverse-on-surface": "#eff1f3",
+                    "tertiary": "#695c50",
+                    "on-background": "#191c1e",
+                    "tertiary-fixed": "#f2dfd0",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#a5c8ff",
+                    "on-primary-fixed-variant": "#00504a",
+                    "on-surface-variant": "#3d4947",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f7f9fb",
+                    "inverse-primary": "#71d7cd",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-container-high": "#e6e8ea",
+                    "primary-fixed": "#8ef4e9",
+                    "secondary": "#3b6090",
+                    "primary-fixed-dim": "#71d7cd",
+                    "on-tertiary-fixed": "#231a11",
+                    "surface-variant": "#e0e3e5",
+                    "surface-tint": "#006a63",
+                    "on-tertiary-fixed-variant": "#51453a",
+                    "primary-container": "#4db6ac",
+                    "on-secondary-fixed": "#001c3a",
+                    "outline": "#6d7a77",
+                    "background": "#f7f9fb",
+                    "primary": "#006a63",
+                    "inverse-surface": "#2d3133",
+                    "tertiary-container": "#b4a395",
+                    "on-primary-fixed": "#00201d",
+                    "tertiary-fixed-dim": "#d5c3b5",
+                    "on-surface": "#191c1e",
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary-container": "#45392f",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#a5c8ff",
+                    "secondary-fixed": "#d4e3ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "espaciado-tarjeta": "24px",
+                    "base": "8px",
+                    "rejilla-gutter": "24px",
+                    "margen-pantalla": "32px",
+                    "separacion-secciones": "48px",
+                    "rejilla-columnas": "12",
+                    "sidebar-width": "260px"
+            },
+            "fontFamily": {
+                    "etiqueta-sm": ["Plus Jakarta Sans"],
+                    "titular-xl": ["Plus Jakarta Sans"],
+                    "cuerpo-md": ["Plus Jakarta Sans"],
+                    "dato-numerico": ["Plus Jakarta Sans"],
+                    "titular-lg-movil": ["Plus Jakarta Sans"],
+                    "cuerpo-lg": ["Plus Jakarta Sans"],
+                    "titular-lg": ["Plus Jakarta Sans"],
+                    "titular-md": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "etiqueta-sm": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "titular-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "cuerpo-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "dato-numerico": ["20px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "titular-lg-movil": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "cuerpo-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "titular-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "titular-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f7f9fb; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- SideNavBar (from JSON) -->
+<aside class="fixed left-0 top-0 h-screen w-sidebar-width bg-surface border-r border-outline-variant shadow-sm flex flex-col gap-unit py-gutter z-50">
+<div class="px-6 py-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">hotel</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight font-bold">LuxeStay</h1>
+<p class="text-on-surface-variant text-[12px] font-medium uppercase tracking-wider">Gestión Premier</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 px-6 py-3" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps font-semibold">Panel</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 px-6 py-3" href="#">
+<span class="material-symbols-outlined">bed</span>
+<span class="font-label-caps text-label-caps font-semibold">Habitaciones</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 px-6 py-3" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label-caps text-label-caps font-semibold">Reservas</span>
+</a>
+<!-- Active Tab: Clientes -->
+<a class="bg-primary-container/10 text-primary border-l-4 border-primary flex items-center gap-3 px-6 py-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-caps text-label-caps font-semibold">Clientes</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 px-6 py-3" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-caps text-label-caps font-semibold">Facturación</span>
+</a>
+</nav>
+<div class="mt-auto px-6 py-8">
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-xl font-semibold flex items-center justify-center gap-2 scale-100 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined">add</span>
+                Nueva Reserva
+            </button>
+</div>
+</aside>
+<!-- TopNavBar (from JSON) -->
+<header class="fixed top-0 right-0 left-[260px] h-16 bg-surface/95 backdrop-blur-sm border-b border-outline-variant flex items-center justify-between px-margen-pantalla z-40">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-cuerpo-md focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="Buscar clientes por nombre, email o DNI..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-low rounded-full p-2 text-on-surface-variant transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:bg-surface-container-low rounded-full p-2 text-on-surface-variant transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3">
+<span class="text-right hidden sm:block">
+<p class="font-etiqueta-sm text-on-surface">Gerente LuxeStay</p>
+<p class="text-[12px] text-on-surface-variant">Turno de Mañana</p>
+</span>
+<img alt="Avatar del gerente" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a boutique hotel manager in a sharp navy suit, looking confident and welcoming. The setting is a minimalist, brightly lit luxury hotel lobby with soft turquoise accents and natural stone textures. The photography style is high-key, clean, and modern, reflecting a high-end corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCr3vSeqsBEt4d7aHlkuBZR4CNyo3Y5U-bGR7EJEg2pGdXis6Ht8BA9F7GxOX4QZnVMeh1ggn1qNanUZNNJG9iAROq8UvAhDhHckwMCqOlZ51RsElpeDJ-tVT9MYPwo2sy7z72WusLYzqaiy9OMLNeKmnDtHFnXAoYeDE2BV3i-zr-iil-Duv5XOf-bg0HaC7poH1wi7_WszNXvJbZm0bBijqB-Sz7esJB9ItfTjGZUeUD4fsy67QxdQElM22KBxozDUCeUIbpffHzm"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] pt-16 min-h-screen">
+<div class="p-margen-pantalla max-w-[1440px] mx-auto">
+<!-- Dashboard Header Section -->
+<section class="mb-separacion-secciones flex justify-between items-end">
+<div>
+<h2 class="font-titular-lg text-titular-lg text-primary">Directorio de Huéspedes</h2>
+<p class="font-cuerpo-md text-on-surface-variant mt-1">Gestión integral de perfiles, estancias y preferencias personalizadas.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-highest text-on-surface px-4 py-2 rounded-lg font-etiqueta-sm flex items-center gap-2 hover:bg-outline-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                        Filtros Avanzados
+                    </button>
+<button class="bg-secondary text-on-secondary px-4 py-2 rounded-lg font-etiqueta-sm flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+                        Exportar CSV
+                    </button>
+</div>
+</section>
+<!-- Filters & Stats Bento Row -->
+<div class="grid grid-cols-12 gap-rejilla-gutter mb-separacion-secciones">
+<!-- Status Stats -->
+<div class="col-span-12 lg:col-span-8 grid grid-cols-3 gap-rejilla-gutter">
+<div class="bg-surface-container-lowest p-espaciado-tarjeta rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<span class="text-primary font-etiqueta-sm uppercase tracking-wider">Total Clientes</span>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="font-titular-xl text-titular-xl">1,284</span>
+<span class="text-primary font-bold text-sm">+12%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-espaciado-tarjeta rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<span class="text-secondary font-etiqueta-sm uppercase tracking-wider">Huéspedes VIP</span>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="font-titular-xl text-titular-xl">86</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-espaciado-tarjeta rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<span class="text-on-surface-variant font-etiqueta-sm uppercase tracking-wider">Frecuencia Alta</span>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="font-titular-xl text-titular-xl">342</span>
+<span class="text-tertiary font-bold text-sm">Top 30%</span>
+</div>
+</div>
+</div>
+<!-- Featured Quick Filter -->
+<div class="col-span-12 lg:col-span-4 bg-primary-container text-on-primary-container p-espaciado-tarjeta rounded-xl relative overflow-hidden shadow-sm">
+<div class="relative z-10">
+<h3 class="font-titular-md text-titular-md mb-2">Clientes Recurrentes</h3>
+<p class="font-cuerpo-md opacity-90 mb-4">Ver huéspedes con más de 5 estancias este año.</p>
+<button class="bg-on-primary-container text-white px-4 py-2 rounded-lg font-etiqueta-sm flex items-center gap-2 hover:bg-primary transition-colors">
+                            Ver Segmento
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[120px] opacity-10 rotate-12">loyalty</span>
+</div>
+</div>
+<!-- Main Guest Table Section -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface-container-low/30">
+<div class="flex gap-4">
+<button class="font-etiqueta-sm text-primary border-b-2 border-primary pb-1">Todos los Huéspedes</button>
+<button class="font-etiqueta-sm text-on-surface-variant hover:text-primary transition-colors">En el Hotel (Check-in)</button>
+<button class="font-etiqueta-sm text-on-surface-variant hover:text-primary transition-colors">Lista Negra</button>
+</div>
+<div class="text-on-surface-variant text-sm font-medium">
+                        Mostrando 10 de 1,284 clientes
+                    </div>
+</div>
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="p-4 font-etiqueta-sm text-on-surface-variant border-b border-outline-variant">Nombre y Contacto</th>
+<th class="p-4 font-etiqueta-sm text-on-surface-variant border-b border-outline-variant">Categoría</th>
+<th class="p-4 font-etiqueta-sm text-on-surface-variant border-b border-outline-variant">Estancias</th>
+<th class="p-4 font-etiqueta-sm text-on-surface-variant border-b border-outline-variant">Preferencia Especial</th>
+<th class="p-4 font-etiqueta-sm text-on-surface-variant border-b border-outline-variant">Última Visita</th>
+<th class="p-4 font-etiqueta-sm text-on-surface-variant border-b border-outline-variant text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Guest Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center font-bold">AV</div>
+<div>
+<p class="font-titular-md text-base text-on-surface">Adriana Villalobos</p>
+<p class="text-sm text-on-surface-variant">a.villalobos@email.com</p>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="px-3 py-1 rounded-full text-[12px] font-bold bg-primary-fixed text-on-primary-fixed uppercase">VIP Platinum</span>
+</td>
+<td class="p-4 font-dato-numerico text-sm">14 estancias</td>
+<td class="p-4">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[18px] text-primary">wine_bar</span>
+                                    Vino tinto reserva en check-in
+                                </div>
+</td>
+<td class="p-4 text-sm">12 Oct 2023</td>
+<td class="p-4 text-right">
+<button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Guest Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<img alt="Avatar guest" class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a mature male guest with a friendly smile, dressed in business casual attire. The background is a soft-focus interior of a luxurious boutique hotel lounge with warm sand and turquoise color palette, suggesting a high-status regular client." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2d65rOxMMP2MZYDHbiFo-0RcAP3awfUlXGqK9GDAaNeGD72zUJboFcrcrpWjv7dPyb9uxIHbOiryxGckmyjJF1tv9zogm2pkMfn_zvmeodZQuK3m3NhgniIq8ZK78YsqlJrgpIHYZSMGT1ic4Y_YlTfilAkhDnI_qzgNbPhCmtP-2TL-d4PhDJSy68TGU5PpiFBhQ5FEsh-_4CFtMpxknuLrmIm0iAWMF9Lzjj5x597uHhgbauXzy3yV92_fiRoAdFPqHozy76yGo"/>
+<div>
+<p class="font-titular-md text-base text-on-surface">Julian Martínez</p>
+<p class="text-sm text-on-surface-variant">julian.mtz@corporate.com</p>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="px-3 py-1 rounded-full text-[12px] font-bold bg-secondary-fixed text-on-secondary-fixed uppercase">Corporativo</span>
+</td>
+<td class="p-4 font-dato-numerico text-sm">8 estancias</td>
+<td class="p-4">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[18px] text-primary">desk</span>
+                                    Habitación con escritorio extra
+                                </div>
+</td>
+<td class="p-4 text-sm">25 Nov 2023</td>
+<td class="p-4 text-right">
+<button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Guest Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold">SM</div>
+<div>
+<p class="font-titular-md text-base text-on-surface">Sara Meyer</p>
+<p class="text-sm text-on-surface-variant">sara.meyer@webmail.de</p>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="px-3 py-1 rounded-full text-[12px] font-bold bg-surface-container-highest text-on-surface-variant uppercase">Estandar</span>
+</td>
+<td class="p-4 font-dato-numerico text-sm">2 estancias</td>
+<td class="p-4">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[18px] text-primary">pet_supplies</span>
+                                    Viaja con mascota (Golden Retriever)
+                                </div>
+</td>
+<td class="p-4 text-sm">Hoy (Check-in)</td>
+<td class="p-4 text-right">
+<button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Guest Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<img alt="Avatar guest" class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a sophisticated female guest in her 30s with a modern, elegant style. She is laughing gently in a bright, airy setting that looks like a high-end coastal resort terrace. The lighting is natural and warm, emphasizing a calm and premium atmosphere consistent with LuxeStay's brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlug87bv5tkNF67E1oWtsbMofk0QmK62_epCgVnljKBjs89PreQAH59ZzR0AQUlugocwdPhA0jCK-tRSS7jpgEuyEy7tSXVXTA4-cJvfLj9PBOp89C5RWYAPHqxcnPS-fVLs7254JAVKHpMa6knUKEs4BcmTUSkrXW4BChFPDz2XvnfZ1lf2udCaAlNz3ZAaS50Xyz7f1pG3U-kAY0sNBmX7Ua6FQ-MD2jgh-xSGHmfuIwlGwYLYg3XfPyftDKuhiyW96bEpt2NB_w"/>
+<div>
+<p class="font-titular-md text-base text-on-surface">Elena García</p>
+<p class="text-sm text-on-surface-variant">elena.g@diseno.es</p>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="px-3 py-1 rounded-full text-[12px] font-bold bg-primary-fixed text-on-primary-fixed uppercase">VIP Gold</span>
+</td>
+<td class="p-4 font-dato-numerico text-sm">22 estancias</td>
+<td class="p-4">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[18px] text-primary">nest_clock_farsight_analog</span>
+                                    Late Check-out siempre habilitado
+                                </div>
+</td>
+<td class="p-4 text-sm">02 Dic 2023</td>
+<td class="p-4 text-right">
+<button class="p-2 hover:bg-surface-container-high rounded-full text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="p-6 bg-surface-container-low/30 border-t border-outline-variant flex justify-between items-center">
+<button class="px-4 py-2 text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 font-etiqueta-sm disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+                        Anterior
+                    </button>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded bg-primary text-on-primary text-sm font-bold">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-highest text-sm">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-highest text-sm">3</button>
+<span class="px-2">...</span>
+<button class="w-8 h-8 rounded hover:bg-surface-container-highest text-sm">129</button>
+</div>
+<button class="px-4 py-2 text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 font-etiqueta-sm">
+                        Siguiente
+                        <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Profile Spotlight (Asymmetric Layout element) -->
+<section class="mt-separacion-secciones grid grid-cols-12 gap-rejilla-gutter">
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest p-espaciado-tarjeta rounded-xl border border-outline-variant shadow-sm h-full">
+<h3 class="font-titular-md text-titular-md text-primary mb-6">Notas del Conserje</h3>
+<div class="space-y-4">
+<div class="p-4 bg-surface rounded-lg border-l-4 border-tertiary">
+<p class="text-sm font-bold text-on-surface mb-1">Gestión de Alergias</p>
+<p class="text-sm text-on-surface-variant">Varios huéspedes del segmento "Corporativo" han solicitado menús libres de gluten en el buffet.</p>
+</div>
+<div class="p-4 bg-surface rounded-lg border-l-4 border-primary">
+<p class="text-sm font-bold text-on-surface mb-1">Campaña Fidelidad</p>
+<p class="text-sm text-on-surface-variant">Recordatorio: Ofrecer el upgrade a Suite Imperial para clientes con más de 15 estancias anuales.</p>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest p-espaciado-tarjeta rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-titular-md text-titular-md text-primary">Historial de Estancias Global</h3>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+                        Este Mes
+                        </div>
+</div>
+<!-- Illustrative chart area -->
+<div class="h-48 flex items-end gap-2 px-4">
+<div class="flex-1 bg-primary-container/20 rounded-t-lg h-[40%] transition-all hover:bg-primary-container/40 relative group">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">124</div>
+</div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg h-[65%] transition-all hover:bg-primary-container/40 relative group"></div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg h-[85%] transition-all hover:bg-primary-container/40 relative group"></div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg h-[55%] transition-all hover:bg-primary-container/40 relative group"></div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg h-[95%] transition-all hover:bg-primary-container/40 relative group"></div>
+<div class="flex-1 bg-primary-container/20 rounded-t-lg h-[75%] transition-all hover:bg-primary-container/40 relative group"></div>
+<div class="flex-1 bg-primary text-primary/80 rounded-t-lg h-[100%] transition-all relative group">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-white text-[10px] py-1 px-2 rounded opacity-100 transition-opacity">Máx 342</div>
+</div>
+</div>
+<div class="flex justify-between mt-4 px-4 font-etiqueta-sm text-on-surface-variant opacity-60">
+<span>Sem 1</span>
+<span>Sem 2</span>
+<span>Sem 3</span>
+<span>Sem 4</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

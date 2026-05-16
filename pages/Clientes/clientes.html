@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Clientes - LuxeStay</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "error": "#ba1a1a", "on-error": "#ffffff", "on-primary-container": "#00433f",
+              "surface-container-low": "#f2f4f6", "surface-container": "#eceef0", "surface": "#f7f9fb",
+              "surface-container-lowest": "#ffffff", "outline-variant": "#bdc9c6",
+              "tertiary": "#695c50", "on-background": "#191c1e", "secondary-container": "#a5c8ff",
+              "on-surface-variant": "#3d4947", "on-primary": "#ffffff", "primary-fixed": "#8ef4e9",
+              "secondary": "#3b6090", "outline": "#6d7a77", "background": "#f7f9fb",
+              "primary": "#006a63", "tertiary-container": "#b4a395", "on-surface": "#191c1e",
+              "primary-container": "#4db6ac", "secondary-fixed": "#d4e3ff", "on-secondary-fixed": "#001c3a",
+              "tertiary-fixed": "#f2dfd0", "on-tertiary-fixed": "#231a11", "surface-container-highest": "#e0e3e5",
+              "error-container": "#ffdad6"
+            },
+            "fontFamily": {
+              "etiqueta-sm": ["Plus Jakarta Sans"], "titular-xl": ["Plus Jakarta Sans"],
+              "cuerpo-md": ["Plus Jakarta Sans"], "dato-numerico": ["Plus Jakarta Sans"],
+              "titular-lg": ["Plus Jakarta Sans"], "titular-md": ["Plus Jakarta Sans"]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f7f9fb; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        body.modal-open { overflow: hidden; }
+        
+        .tab-activa { color: #006a63; border-bottom: 2px solid #006a63; padding-bottom: 4px; font-weight: 600; }
+        .tab-inactiva { color: #3d4947; padding-bottom: 4px; cursor: pointer; }
+        .tab-inactiva:hover { color: #006a63; }
+    </style>
+</head>
+<body class="text-on-surface">
+
+    <aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface border-r border-outline-variant shadow-sm flex flex-col gap-8 py-8 z-50">
+        <div class="px-6 flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+                <span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">hotel</span>
+            </div>
+            <div>
+                <h1 class="font-titular-md text-[24px] text-primary tracking-tight font-bold leading-none">LuxeStay</h1>
+                <p class="text-on-surface-variant text-[10px] font-bold uppercase tracking-wider mt-1">Gestión Hotelaria</p>
+            </div>
+        </div>
+        
+        <nav class="flex-1 space-y-1">
+            <a data-nav="dashboard" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../dashboard.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="font-label-caps text-label-caps">Panel de Control</span>
+            </a>
+            <a data-nav="habitaciones" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../habitaciones/habitaciones.html">
+                <span class="material-symbols-outlined">bed</span>
+                <span class="font-label-caps text-label-caps">Habitaciones</span>
+            </a>
+            <a data-nav="reservas" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../Reservas/reservas.html">
+                <span class="material-symbols-outlined">calendar_today</span>
+                <span class="font-label-caps text-label-caps">Reservas</span>
+            </a>
+            <a data-nav="clientes" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../Clientes/clientes.html">
+                <span class="material-symbols-outlined">group</span>
+                <span class="font-label-caps text-label-caps">Clientes</span>
+            </a>
+            <a data-nav="facturacion" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../Facturacion/facturacion.html">
+                <span class="material-symbols-outlined">payments</span>
+                <span class="font-label-caps text-label-caps">Facturación</span>
+            </a>
+        </nav>
+
+        <div class="mt-auto pt-6 border-t border-outline-variant px-6">
+            <button onclick="logout()" class="w-full py-3 px-4 bg-error text-on-error rounded-xl font-semibold hover:bg-error/90 transition-colors">Cerrar Sesión</button>
+        </div>
+    </aside>
+
+    <header class="fixed top-0 right-0 left-[260px] h-16 bg-surface/95 backdrop-blur-sm border-b border-outline-variant flex items-center justify-between px-8 z-40">
+        <div class="flex items-center flex-1 max-w-xl">
+            
+        </div>
+        <div class="flex items-center gap-4">
+           
+            <div class="h-8 w-px bg-outline-variant mx-2"></div>
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <p id="userName" class="font-etiqueta-sm text-on-surface text-sm">Usuario</p>
+                    <p class="text-[12px] text-on-surface-variant">Turno de Mañana</p>
+                </div>
+                <img alt="Avatar del gerente" class="w-10 h-10 rounded-full object-cover border border-outline-variant" src="https://ui-avatars.com/api/?name=Usuario&background=006a63&color=fff"/>
+            </div>
+        </div>
+    </header>
+
+    <main class="ml-[260px] pt-16 min-h-screen">
+        <div class="p-8 max-w-[1440px] mx-auto pb-24">
+            
+            <section class="mb-8 flex justify-between items-end">
+                <div>
+                    <h2 class="font-titular-lg text-[32px] text-primary font-semibold">Directorio de Huéspedes</h2>
+                    <p class="font-cuerpo-md text-on-surface-variant mt-1">Gestión integral de perfiles y estados.</p>
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="abrirModalNuevoCliente()" class="bg-primary text-on-primary px-5 py-2.5 rounded-lg font-etiqueta-sm flex items-center gap-2 hover:opacity-90 transition-opacity shadow-sm">
+                        <span class="material-symbols-outlined text-[20px]">person_add</span> Nuevo Cliente
+                    </button>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-3 gap-6 mb-8">
+                <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+                    <span class="text-primary font-etiqueta-sm uppercase tracking-wider">Total Registrados</span>
+                    <div class="mt-4"><span id="stat-total" class="font-titular-xl text-[40px] font-bold">0</span></div>
+                </div>
+                <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+                    <span class="text-secondary font-etiqueta-sm uppercase tracking-wider">Clientes Activos</span>
+                    <div class="mt-4"><span id="stat-activos" class="font-titular-xl text-[40px] font-bold">0</span></div>
+                </div>
+                <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+                    <span class="text-tertiary font-etiqueta-sm uppercase tracking-wider">Clientes Inactivos</span>
+                    <div class="mt-4"><span id="stat-inactivos" class="font-titular-xl text-[40px] font-bold">0</span></div>
+                </div>
+            </div>
+            
+            <div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden mb-8">
+                <div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface-container-low/30">
+                    <div class="flex gap-4">
+                        <button id="tab-Todos" onclick="cambiarPestana('Todos')" class="font-etiqueta-sm tab-activa transition-colors">Todos</button>
+                        <button id="tab-Activos" onclick="cambiarPestana('Activo')" class="font-etiqueta-sm tab-inactiva transition-colors">Activos</button>
+                        <button id="tab-Inactivos" onclick="cambiarPestana('Inactivo')" class="font-etiqueta-sm tab-inactiva transition-colors">Inactivos</button>
+                    </div>
+                    <div id="info-paginacion" class="text-on-surface-variant text-sm font-medium">Mostrando...</div>
+                </div>
+                
+                <table class="w-full border-collapse text-left">
+                    <thead>
+                        <tr class="bg-surface-container-low/50">
+                            <th class="p-4 font-etiqueta-sm text-on-surface-variant border-b border-outline-variant">Cliente / Contacto</th>
+                            <th class="p-4 font-etiqueta-sm text-on-surface-variant border-b border-outline-variant">Documento</th>
+                            <th class="p-4 font-etiqueta-sm text-on-surface-variant border-b border-outline-variant">Empresa</th>
+                            <th class="p-4 font-etiqueta-sm text-on-surface-variant border-b border-outline-variant">Estado</th>
+                            <th class="p-4 font-etiqueta-sm text-on-surface-variant border-b border-outline-variant text-right">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-clientes" class="divide-y divide-outline-variant">
+                        </tbody>
+                </table>
+                
+                <div class="p-4 bg-surface-container-low/30 border-t border-outline-variant flex justify-between items-center">
+                    <button id="btn-prev" onclick="cambiarPagina(-1)" class="px-4 py-2 text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 font-etiqueta-sm disabled:opacity-50">
+                        <span class="material-symbols-outlined">chevron_left</span> Anterior
+                    </button>
+                    <div id="numeros-paginacion" class="flex gap-2 font-etiqueta-sm text-on-surface-variant font-bold">
+                        Página 1
+                    </div>
+                    <button id="btn-next" onclick="cambiarPagina(1)" class="px-4 py-2 text-on-surface-variant hover:text-primary transition-colors flex items-center gap-2 font-etiqueta-sm disabled:opacity-50">
+                        Siguiente <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal-form-cliente" class="fixed inset-0 bg-on-background/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-surface-container-lowest rounded-2xl w-full max-w-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest sticky top-0 z-10">
+                <div>
+                    <h3 id="modal-titulo" class="font-titular-md text-[20px] text-primary">Ficha del Cliente</h3>
+                    <p id="modal-registro-fecha" class="text-xs text-on-surface-variant font-bold mt-1"></p>
+                </div>
+                <button onclick="cerrarModal('modal-form-cliente')" class="material-symbols-outlined hover:text-error transition-colors">close</button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto no-scrollbar">
+                <form id="form-cliente" class="space-y-5">
+                    <input type="hidden" id="form-id" value="">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="md:col-span-2">
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Nombre Completo *</label>
+                            <input type="text" id="form-nombre" required placeholder="Ej. Juan Pérez" class="w-full mt-1 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 outline-none focus:border-primary">
+                        </div>
+                        
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Documento de Identidad (DNI/Pasaporte) *</label>
+                            <input type="text" id="form-documento" required class="w-full mt-1 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 outline-none focus:border-primary">
+                        </div>
+
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Teléfono *</label>
+                            <input type="tel" id="form-telefono" required class="w-full mt-1 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 outline-none focus:border-primary">
+                        </div>
+
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Correo Electrónico *</label>
+                            <input type="email" id="form-email" required class="w-full mt-1 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 outline-none focus:border-primary">
+                        </div>
+
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Dirección Física *</label>
+                            <input type="text" id="form-direccion" required class="w-full mt-1 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 outline-none focus:border-primary">
+                        </div>
+                    </div>
+
+                    <hr class="border-outline-variant my-4">
+
+                    <h4 class="font-etiqueta-sm text-primary uppercase tracking-wider text-xs">Información Adicional (Opcional)</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Empresa a la que pertenece</label>
+                            <input type="text" id="form-empresa" placeholder="Dejar en blanco si es particular" class="w-full mt-1 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 outline-none focus:border-primary">
+                        </div>
+
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Estado en el Sistema *</label>
+                            <select id="form-estado" class="w-full mt-1 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 outline-none focus:border-primary">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                        
+    
+
+                        <div class="md:col-span-2">
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Observaciones / Notas de Preferencias</label>
+                            <textarea id="form-observaciones" rows="3" placeholder="Alergias, peticiones especiales, notas de facturación..." class="w-full mt-1 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 outline-none focus:border-primary"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="px-6 py-4 border-t border-outline-variant flex justify-end gap-3 bg-surface-container-lowest sticky bottom-0 z-10">
+                <button onclick="cerrarModal('modal-form-cliente')" class="px-5 py-2.5 rounded-xl hover:bg-surface-container-high transition-colors font-etiqueta-sm">Cancelar</button>
+                <button onclick="guardarCliente()" class="px-6 py-2.5 bg-primary text-on-primary rounded-xl hover:opacity-90 transition-opacity font-etiqueta-sm flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">save</span> Guardar Cliente
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared.js"></script>
+    <script src="clientes.js"></script>
+</body>
+</html>

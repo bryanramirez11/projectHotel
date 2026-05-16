@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#00433f",
+                        "on-secondary-fixed-variant": "#204877",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container": "#eceef0",
+                        "surface": "#f7f9fb",
+                        "on-secondary-container": "#2e5484",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#bdc9c6",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary": "#695c50",
+                        "on-background": "#191c1e",
+                        "tertiary-fixed": "#f2dfd0",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#a5c8ff",
+                        "on-primary-fixed-variant": "#00504a",
+                        "on-surface-variant": "#3d4947",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-primary": "#71d7cd",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed": "#8ef4e9",
+                        "secondary": "#3b6090",
+                        "primary-fixed-dim": "#71d7cd",
+                        "on-tertiary-fixed": "#231a11",
+                        "surface-variant": "#e0e3e5",
+                        "surface-tint": "#006a63",
+                        "on-tertiary-fixed-variant": "#51453a",
+                        "primary-container": "#4db6ac",
+                        "on-secondary-fixed": "#001c3a",
+                        "outline": "#6d7a77",
+                        "background": "#f7f9fb",
+                        "primary": "#006a63",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-container": "#b4a395",
+                        "on-primary-fixed": "#00201d",
+                        "tertiary-fixed-dim": "#d5c3b5",
+                        "on-surface": "#191c1e",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#45392f",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#a5c8ff",
+                        "secondary-fixed": "#d4e3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "espaciado-tarjeta": "24px",
+                        "base": "8px",
+                        "rejilla-gutter": "24px",
+                        "margen-pantalla": "32px",
+                        "separacion-secciones": "48px",
+                        "rejilla-columnas": "12",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "etiqueta-sm": ["Plus Jakarta Sans"],
+                        "titular-xl": ["Plus Jakarta Sans"],
+                        "cuerpo-md": ["Plus Jakarta Sans"],
+                        "dato-numerico": ["Plus Jakarta Sans"],
+                        "titular-lg-movil": ["Plus Jakarta Sans"],
+                        "cuerpo-lg": ["Plus Jakarta Sans"],
+                        "titular-lg": ["Plus Jakarta Sans"],
+                        "titular-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "etiqueta-sm": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                        "titular-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "cuerpo-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "dato-numerico": ["20px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "titular-lg-movil": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "cuerpo-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "titular-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "titular-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f7f9fb; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); border: 1px solid rgba(226, 232, 240, 0.8); }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-screen w-sidebar-width bg-surface border-r border-outline-variant shadow-sm flex flex-col gap-2 py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="font-titular-md text-titular-md text-primary tracking-tight">LuxeStay</h1>
+<p class="font-etiqueta-sm text-etiqueta-sm text-on-surface-variant/70">Gestión Premier</p>
+</div>
+<nav class="flex-1">
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 px-6 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-etiqueta-sm text-etiqueta-sm">Panel</span>
+</a>
+<!-- Active State: Habitaciones -->
+<a class="bg-primary-container/10 text-primary border-l-4 border-primary flex items-center gap-3 px-6 py-3 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="bed" style="font-variation-settings: 'FILL' 1;">bed</span>
+<span class="font-etiqueta-sm text-etiqueta-sm">Habitaciones</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 px-6 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+<span class="font-etiqueta-sm text-etiqueta-sm">Reservas</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 px-6 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-etiqueta-sm text-etiqueta-sm">Clientes</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center gap-3 px-6 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-etiqueta-sm text-etiqueta-sm">Facturación</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-primary text-on-primary font-etiqueta-sm text-etiqueta-sm py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+<span>Nueva Reserva</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-[260px] min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 left-[260px] h-16 bg-surface/95 backdrop-blur-sm border-b border-outline-variant z-40 flex items-center justify-between px-8">
+<div class="flex items-center gap-4 bg-surface-container-low px-4 py-2 rounded-full w-96 border border-outline-variant/30">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-cuerpo-md font-cuerpo-md w-full p-0" placeholder="Buscar habitación o cliente..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="hover:bg-surface-container-low rounded-full p-2 transition-all relative">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="hover:bg-surface-container-low rounded-full p-2 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="settings">settings</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="text-right">
+<p class="font-etiqueta-sm text-etiqueta-sm text-on-surface">Admin Luxe</p>
+<p class="text-[12px] text-on-surface-variant/70">Gerente de Turno</p>
+</div>
+<img alt="Avatar del gerente" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a boutique hotel manager in a sharp navy blazer, standing in a brightly lit, modern lobby with marble accents and soft warm lighting. The style is clean, corporate yet welcoming, with a shallow depth of field focusing on the friendly expression of the individual. High-quality commercial photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNHYVY85t8KdlfIptre69b28ysSmbzi19DWMpCqbHmD4VMIPJSAtJps4s7x_xxmit9Dh3U_40itiPoXd7WP1NiEF89tYrMAN7XWe3SmXvXq6v_E3Fjy5rQn40ybLnzfJGdt2B6dE_arkxXpn4xueK3A8uMkAa7KSsFuvVSTV1WieV9QKhiIASx1SKqVf6fe298Vy03GJR-nhFc2JqD3SlKXmXvHvyANU_lDs5ys_vmzDiw4cImYF0NgOYgt6cnLZzamfmqPYwv8XjH"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="pt-24 px-8 pb-12 max-w-7xl mx-auto">
+<!-- Page Header Section -->
+<div class="flex items-center justify-between mb-10">
+<div>
+<h2 class="font-titular-lg text-titular-lg text-on-surface">Gestión de Habitaciones</h2>
+<p class="font-cuerpo-md text-cuerpo-md text-on-surface-variant mt-1">Supervisa el estado y disponibilidad de las suites en tiempo real.</p>
+</div>
+<button class="bg-primary text-on-primary font-etiqueta-sm text-etiqueta-sm px-6 py-3 rounded-xl flex items-center gap-2 shadow-sm hover:shadow-md transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+                    Agregar Habitación
+                </button>
+</div>
+<!-- Bento Grid Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-primary/10 text-primary rounded-lg">
+<span class="material-symbols-outlined" data-icon="bed" style="font-variation-settings: 'FILL' 1;">bed</span>
+</span>
+<span class="text-etiqueta-sm text-primary">+4% hoy</span>
+</div>
+<p class="text-on-surface-variant font-etiqueta-sm">Total Habitaciones</p>
+<h3 class="text-titular-md font-titular-md mt-1">42</h3>
+</div>
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-green-100 text-green-700 rounded-lg">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</span>
+<span class="text-etiqueta-sm text-green-700">68% ocupación</span>
+</div>
+<p class="text-on-surface-variant font-etiqueta-sm">Disponibles</p>
+<h3 class="text-titular-md font-titular-md mt-1">28</h3>
+</div>
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between border-l-4 border-l-secondary">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-secondary/10 text-secondary rounded-lg">
+<span class="material-symbols-outlined" data-icon="cleaning_services">cleaning_services</span>
+</span>
+<span class="text-etiqueta-sm text-secondary">Prioridad Alta</span>
+</div>
+<p class="text-on-surface-variant font-etiqueta-sm">En Limpieza</p>
+<h3 class="text-titular-md font-titular-md mt-1">6</h3>
+</div>
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+<div class="flex items-center justify-between mb-4">
+<span class="p-2 bg-error-container text-error rounded-lg">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</span>
+<span class="text-etiqueta-sm text-error">Revisión</span>
+</div>
+<p class="text-on-surface-variant font-etiqueta-sm">Mantenimiento</p>
+<h3 class="text-titular-md font-titular-md mt-1">2</h3>
+</div>
+</div>
+<!-- Filters Bar -->
+<div class="bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant mb-8 flex flex-wrap items-center gap-4">
+<div class="flex items-center gap-2 border-r border-outline-variant pr-4 mr-2">
+<span class="material-symbols-outlined text-outline" data-icon="filter_list">filter_list</span>
+<span class="font-etiqueta-sm text-etiqueta-sm text-on-surface-variant">Filtros:</span>
+</div>
+<div class="flex-1 flex gap-4">
+<select class="bg-surface-container-low border-none rounded-lg font-etiqueta-sm text-etiqueta-sm px-4 py-2 focus:ring-2 focus:ring-primary/20 min-w-[140px]">
+<option>Todos los Pisos</option>
+<option>Piso 1 - Lobby</option>
+<option>Piso 2 - Premium</option>
+<option>Piso 3 - VIP</option>
+</select>
+<select class="bg-surface-container-low border-none rounded-lg font-etiqueta-sm text-etiqueta-sm px-4 py-2 focus:ring-2 focus:ring-primary/20 min-w-[180px]">
+<option>Tipo: Todos</option>
+<option>Suite Presidencial</option>
+<option>Doble Deluxe</option>
+<option>Individual Standard</option>
+</select>
+<select class="bg-surface-container-low border-none rounded-lg font-etiqueta-sm text-etiqueta-sm px-4 py-2 focus:ring-2 focus:ring-primary/20 min-w-[140px]">
+<option>Cualquier Estado</option>
+<option>Disponible</option>
+<option>Ocupada</option>
+<option>Limpieza</option>
+</select>
+</div>
+<div class="ml-auto flex items-center gap-2">
+<button class="p-2 bg-primary text-on-primary rounded-lg">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="format_list_bulleted">format_list_bulleted</span>
+</button>
+</div>
+</div>
+<!-- Rooms Grid (Main View) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Room Card 1: Ocupada -->
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant hover:shadow-xl hover:scale-[1.01] transition-all group">
+<div class="relative h-48">
+<img alt="Habitación 201" class="w-full h-full object-cover" data-alt="A luxurious hotel suite with a large king-sized bed dressed in crisp white linens. Large floor-to-ceiling windows reveal a serene city park at twilight. The room is decorated in soft sand tones and turquoise accents, featuring minimalist modern furniture and warm designer lighting. Professional architectural photography style, serene and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6PHFeNKhrW4bR_08DSe1DPl5-ntyduPAr67_0cppJHymcg-XcfvgJq-VW2Y5PtCetGmZ1Z9TooPPOXVx-yMdUeG4hfiYzbK2upexzZ0sy2mSxJfk5bK2m2BcWiQ_dyp-Gl59baHwcId6stT4VXRTQcUDy0JQn_6cfqhet4P2bDzv_6YXff0TI7U87U9bp6-_IMu-gxxD0HqhwIB-ITpe80C0VzVWyUoKgHVCrgklY2J_xAW5Tx42xMv6r3dbNIbNHroomLnukgGj7"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[12px] font-bold text-primary shadow-sm">PISO 2</span>
+</div>
+<div class="absolute top-4 right-4">
+<span class="bg-error/90 backdrop-blur text-white px-3 py-1 rounded-full text-[12px] font-bold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+                                OCUPADA
+                            </span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-titular-md text-titular-md text-on-surface">Suite 201</h4>
+<p class="font-etiqueta-sm text-etiqueta-sm text-on-surface-variant">Suite Presidencial</p>
+</div>
+<div class="text-right">
+<p class="font-dato-numerico text-dato-numerico text-primary">$320</p>
+<p class="text-[12px] text-on-surface-variant">/ noche</p>
+</div>
+</div>
+<div class="flex items-center gap-4 py-4 border-y border-outline-variant/30 mb-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+<span class="text-etiqueta-sm">4 Pers.</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="wifi">wifi</span>
+<span class="text-etiqueta-sm">Fibra</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="ac_unit">ac_unit</span>
+<span class="text-etiqueta-sm">Clima</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="A portrait of a young professional woman with a friendly smile, photographed in soft natural light. High-end lifestyle headshot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkLz3YY1F7nANNtitPsrYjLBZMwLYzH_Pu8KQSjfEaWWK4STpoAQps-a75nF_mbVrQvbEGr52i5AFK6RVMBYX3-mKSCaMYnaFM1XN-5N1GMw-beznPavzEwAZqSkx-k1B6HJese-s0D-SJUY7oPUOdjiz2_LIo9POEP4_PzOv16DM0lMWt0d0Lb8OUGJKSN-mFE9F--5i0DfvzW2D6dPZbQW8AQlIGlzmhJwM7_4wTnIxPdakkOUQyJQp_-IqPcMvgIcKfBVOFjDh8"/>
+<img class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="A portrait of a middle-aged man with glasses, looking calm and professional. High-end lifestyle headshot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1m4j-8ot5BSssM6KMllqy1pUFqNVe77OOFTBQFOycMwbN653OdC05yAiAjsE5EzNFXmj5IsC6Qtuirwk4Q_QQQZRp3Cz91SPc2W9ycEbDwcWqSD_Fh9e0A04RKm99gPSGyH2djaVoYWNY4OT04HSiW1Dw48WyBpty7NWCGbBH2oKSbhWNMnEU0wiSyj-dgfdQ-_lBXsf7AvKipmkpQlpyHHY6Nm27RAuUP9VPF3YA0xl61KcRkWXSw7X92cMa1_akG-pcXjTD2qFw"/>
+</div>
+<button class="text-primary font-etiqueta-sm text-etiqueta-sm flex items-center gap-1 hover:underline">
+                                Ver Detalles <span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Room Card 2: Disponible -->
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant hover:shadow-xl hover:scale-[1.01] transition-all group">
+<div class="relative h-48">
+<img alt="Habitación 304" class="w-full h-full object-cover" data-alt="A bright and airy boutique hotel room featuring two double beds with sand-colored throws. The interior has minimalist wooden accents and a soft teal wall. Natural morning sunlight streams through sheer curtains, creating a peaceful and welcoming environment. Professional architectural photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3daBXnSDPJIRJ-feWC4DyNQN0_gukDofvHHAJ7x3yqjMW5utHMNwXI611Ch1gttQsgvCVIotDhIi6W4K5LDQWArcp23o0Dgnpk2NFcGHPEwCwwBjfO2W2HM60gNqGmWnCgNAw-dBliBY_1uPhywN_L1tvJn85QVfj2Mguhp517ISE84zbnI3OY_nis_c2gFSZ46QR_J0RJOi9NEyKvO15a2Onc1sTWqIXj4BWXb5Cii5mt4JjIu1MIIL8Pqui7cqm8GFvs0LYggst"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[12px] font-bold text-primary shadow-sm">PISO 3</span>
+</div>
+<div class="absolute top-4 right-4">
+<span class="bg-green-600/90 backdrop-blur text-white px-3 py-1 rounded-full text-[12px] font-bold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+                                DISPONIBLE
+                            </span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-titular-md text-titular-md text-on-surface">Suite 304</h4>
+<p class="font-etiqueta-sm text-etiqueta-sm text-on-surface-variant">Doble Deluxe</p>
+</div>
+<div class="text-right">
+<p class="font-dato-numerico text-dato-numerico text-primary">$185</p>
+<p class="text-[12px] text-on-surface-variant">/ noche</p>
+</div>
+</div>
+<div class="flex items-center gap-4 py-4 border-y border-outline-variant/30 mb-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+<span class="text-etiqueta-sm">2 Pers.</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="tv">tv</span>
+<span class="text-etiqueta-sm">Smart TV</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="coffee_maker">coffee_maker</span>
+<span class="text-etiqueta-sm">Nespresso</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<p class="text-etiqueta-sm text-on-surface-variant italic">Lista para check-in</p>
+<button class="bg-secondary/10 text-secondary font-etiqueta-sm text-etiqueta-sm px-4 py-2 rounded-lg hover:bg-secondary hover:text-white transition-all">
+                                Reservar
+                            </button>
+</div>
+</div>
+</div>
+<!-- Room Card 3: Limpieza -->
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant hover:shadow-xl hover:scale-[1.01] transition-all group">
+<div class="relative h-48 opacity-80">
+<img alt="Habitación 105" class="w-full h-full object-cover grayscale-[20%]" data-alt="A modern minimalist hotel room with grey and white tones, currently being prepared. The bed is stripped of linens, showing a clean mattress. The lighting is cool and clinical, emphasizing cleanliness. Subtle turquoise accents are visible in the room decor. Highly professional real estate style photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnLv_eSuAUu83BAU_tCCo4Q7Iis_dRsJIOj26hEKDlCKpsX-1QcF9CQ9Phc7X8XecR35Xvau_rngXwgKjJ0laeCL1K3K4k547RIeuh5RHGE2rFbLXEmBmiUgwIs9ah4zSBK7klIrG81ROaHJ12F_avUzi40Tx0CoXlMHo5NIsu84m_Sh5gKcBU0mOlinaDCqPmFXgzhnnp5rE8ipiSWSvPZ9fkzJx2J2XaDosWinSMM3dxv6CphADWyD8Ewi1Mlk46Hqe7S2qvmBNl"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[12px] font-bold text-primary shadow-sm">PISO 1</span>
+</div>
+<div class="absolute top-4 right-4">
+<span class="bg-secondary/90 backdrop-blur text-white px-3 py-1 rounded-full text-[12px] font-bold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[14px]" data-icon="mop">mop</span>
+                                LIMPIEZA
+                            </span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-3">
+<div>
+<h4 class="font-titular-md text-titular-md text-on-surface">Hab. 105</h4>
+<p class="font-etiqueta-sm text-etiqueta-sm text-on-surface-variant">Standard Individual</p>
+</div>
+<div class="text-right">
+<p class="font-dato-numerico text-dato-numerico text-primary">$95</p>
+<p class="text-[12px] text-on-surface-variant">/ noche</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 py-4 border-y border-outline-variant/30 mb-4">
+<div class="flex justify-between items-center">
+<span class="text-etiqueta-sm text-on-surface-variant">Progreso de limpieza:</span>
+<span class="text-etiqueta-sm text-secondary font-bold">45%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[45%] rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="schedule">schedule</span>
+<p class="text-etiqueta-sm text-on-surface-variant">Est. 20 min</p>
+</div>
+<button class="text-primary font-etiqueta-sm text-etiqueta-sm flex items-center gap-1 hover:underline">
+                                Ver Staff <span class="material-symbols-outlined text-[18px]" data-icon="info">info</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Transactional FAB (Optional Contextual Rendering) -->
+<button class="fixed bottom-10 right-10 w-16 h-16 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-[32px]" data-icon="add" style="font-variation-settings: 'wght' 700;">add</span>
+</button>
+</div>
+</main>
+</body></html>

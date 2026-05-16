@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Reservas - LuxeStay</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "error": "#ba1a1a", "on-error": "#ffffff", "on-primary-container": "#00433f",
+              "surface-container-low": "#f2f4f6", "surface-container": "#eceef0", "surface": "#f7f9fb",
+              "surface-container-lowest": "#ffffff", "outline-variant": "#bdc9c6",
+              "tertiary": "#695c50", "on-background": "#191c1e", "secondary-container": "#a5c8ff",
+              "on-surface-variant": "#3d4947", "on-primary": "#ffffff", "primary-fixed": "#8ef4e9",
+              "secondary": "#3b6090", "outline": "#6d7a77", "background": "#f7f9fb",
+              "primary": "#006a63", "tertiary-container": "#b4a395", "on-surface": "#191c1e"
+            },
+            "fontFamily": {
+              "etiqueta-sm": ["Plus Jakarta Sans"], "titular-xl": ["Plus Jakarta Sans"],
+              "cuerpo-md": ["Plus Jakarta Sans"], "dato-numerico": ["Plus Jakarta Sans"],
+              "titular-lg": ["Plus Jakarta Sans"], "titular-md": ["Plus Jakarta Sans"]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body { font-family: 'Plus Jakarta Sans', sans-serif; }
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle;}
+      .gantt-grid { display: grid; grid-template-columns: 200px repeat(14, 1fr); }
+      .hide-scrollbar::-webkit-scrollbar { display: none; }
+      .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      body.modal-open { overflow: hidden; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-cuerpo-md text-cuerpo-md min-h-screen">
+
+    <aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-lowest shadow-sm flex flex-col py-6 px-4 z-50">
+        <div class="mb-8">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-primary flex items-center justify-center text-on-primary shadow-sm">
+                    <span class="material-symbols-outlined">hotel</span>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-primary">LuxeStay</h1>
+                    <p class="text-xs uppercase tracking-[0.22em] text-secondary opacity-80">Gestión Hotelaria</p>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a data-nav="dashboard" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../dashboard.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="font-label-caps text-label-caps">Panel de Control</span>
+            </a>
+            <a data-nav="habitaciones" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../habitaciones/habitaciones.html">
+                <span class="material-symbols-outlined">bed</span>
+                <span class="font-label-caps text-label-caps">Habitaciones</span>
+            </a>
+            <a data-nav="reservas" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../Reservas/reservas.html">
+                <span class="material-symbols-outlined">calendar_today</span>
+                <span class="font-label-caps text-label-caps">Reservas</span>
+            </a>
+            <a data-nav="clientes" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../Clientes/clientes.html">
+                <span class="material-symbols-outlined">group</span>
+                <span class="font-label-caps text-label-caps">Clientes</span>
+            </a>
+            <a data-nav="facturacion" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../Facturacion/facturacion.html">
+                <span class="material-symbols-outlined">payments</span>
+                <span class="font-label-caps text-label-caps">Facturación</span>
+            </a>
+        </nav>
+        <div class="mt-auto pt-6 border-t border-outline-variant">
+            <button onclick="logout()" class="w-full py-3 px-4 bg-error text-on-error rounded-xl font-semibold hover:bg-error/90 transition-colors">Cerrar Sesión</button>
+        </div>
+    </aside>
+
+    <main class="ml-[260px] min-h-screen">
+        <header class="fixed top-0 right-0 left-[260px] h-16 bg-surface/95 backdrop-blur-sm border-b border-outline-variant z-30 flex items-center justify-between px-8">
+            <div class="flex items-center gap-4 bg-surface-container-low rounded-full px-4 py-1.5 w-96 border border-outline-variant/30">
+                <span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+                <input class="bg-transparent border-none focus:ring-0 text-sm w-full outline-none" placeholder="Buscar reservas o clientes..." type="text"/>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="text-right hidden sm:block">
+                    <p id="userName" class="font-etiqueta-sm text-on-surface text-sm">Usuario</p>
+                    <p class="text-[12px] text-on-surface-variant">Sesión activa</p>
+                </div>
+                <div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant">
+                    <img alt="Perfil" src="https://ui-avatars.com/api/?name=Usuario&background=006a63&color=fff"/>
+                </div>
+            </div>
+        </header>
+
+        <section class="mt-16 p-8 max-w-7xl mx-auto pb-24">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="font-titular-lg text-titular-lg text-on-surface mb-2">Calendario de Reservas</h2>
+                    <p class="text-on-surface-variant">Vista de Disponibilidad Real</p>
+                </div>
+                <div class="flex gap-4">
+                    <button onclick="abrirModalNuevaReserva()" class="flex items-center gap-2 px-5 py-2.5 bg-primary text-on-primary rounded-xl font-etiqueta-sm text-etiqueta-sm hover:bg-primary/90 transition-colors">
+                        <span class="material-symbols-outlined text-[20px]" data-icon="add">add</span> Nueva Reserva
+                    </button>
+                    <button onclick="abrirPanelGestion()" class="flex items-center gap-2 px-5 py-2.5 border border-secondary text-secondary rounded-xl font-etiqueta-sm text-etiqueta-sm hover:bg-secondary-container/10 transition-colors">
+                        <span class="material-symbols-outlined text-[20px]" data-icon="list_alt">list_alt</span> Gestionar Todas
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-2xl overflow-hidden shadow-sm mb-8">
+                <div class="gantt-grid border-b border-outline-variant bg-surface-container-low" id="gantt-fechas-header">
+                    <div class="p-4 border-r border-outline-variant font-etiqueta-sm text-etiqueta-sm text-on-surface-variant flex items-center justify-between">
+                        Habitación <span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                    </div>
+                    <div id="contenedor-dias-gantt" class="col-span-14 flex overflow-x-auto hide-scrollbar"></div>
+                </div>
+
+                <div id="contenedor-habitaciones-gantt" class="relative">
+                    </div>
+            </div>
+
+            <div class="flex gap-6 mb-12">
+                <div class="bg-surface-container-low px-6 py-4 rounded-2xl flex items-center gap-4 flex-1 border border-outline-variant/20 shadow-sm">
+                    <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined" data-icon="login">login</span>
+                    </div>
+                    <div>
+                        <div class="text-on-surface-variant text-sm">Entradas hoy</div>
+                        <div id="stat-entradas" class="font-titular-md text-primary">0 Reservas</div>
+                    </div>
+                </div>
+                <div class="bg-surface-container-low px-6 py-4 rounded-2xl flex items-center gap-4 flex-1 border border-outline-variant/20 shadow-sm">
+                    <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+                        <span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    </div>
+                    <div>
+                        <div class="text-on-surface-variant text-sm">Salidas hoy</div>
+                        <div id="stat-salidas" class="font-titular-md text-secondary">0 Hab.</div>
+                    </div>
+                </div>
+                <div class="bg-surface-container-low px-6 py-4 rounded-2xl flex items-center gap-4 flex-1 border border-outline-variant/20 shadow-sm">
+                    <div class="w-12 h-12 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+                        <span class="material-symbols-outlined" data-icon="cleaning_services">cleaning_services</span>
+                    </div>
+                    <div>
+                        <div class="text-on-surface-variant text-sm">En Mantenimiento</div>
+                        <div id="stat-limpieza" class="font-titular-md text-tertiary">0 Hab.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-8">
+                <div class="col-span-2">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="font-titular-md text-on-surface">Próximas Entradas</h3>
+                    </div>
+                    <div id="lista-proximas-entradas" class="space-y-4">
+                        </div>
+                </div>
+                
+                <div class="col-span-1">
+                    <div class="bg-primary text-on-primary p-8 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden shadow-lg shadow-primary/20">
+                        <div class="relative z-10 text-center space-y-4">
+                            <h3 class="font-titular-md">Resumen de Ocupación Hoy</h3>
+                            
+                            <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm border border-white/20">
+                                <div id="occ-percent-text" class="text-[64px] font-bold tracking-tighter leading-none mb-4">0%</div>
+                                <div class="h-3 w-full bg-on-primary/20 rounded-full overflow-hidden">
+                                    <div id="occ-progress-bar" class="h-full bg-primary-fixed w-[0%] transition-all duration-1000 ease-out"></div>
+                                </div>
+                            </div>
+                            
+                            <p class="text-sm font-medium opacity-90 pt-2" id="occ-texto-descriptivo">Calculando...</p>
+                        </div>
+                        
+                        <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-primary-fixed/20 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute -left-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="modal-form-reserva" class="fixed inset-0 bg-on-background/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-surface-container-lowest rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface">
+                <h3 id="modal-titulo" class="font-titular-md text-[20px] text-on-surface">Nueva Reserva</h3>
+                <button onclick="cerrarModal('modal-form-reserva')" class="text-on-surface-variant hover:text-error p-1 rounded-full hover:bg-error-container">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto">
+                <div id="alerta-conflicto" class="hidden mb-4 p-4 bg-error/10 border border-error/20 rounded-lg flex items-center gap-3 text-error">
+                    <span class="material-symbols-outlined">warning</span>
+                    <span class="text-sm font-medium" id="alerta-conflicto-texto">La habitación ya está reservada en estas fechas.</span>
+                </div>
+
+                <form id="form-reserva" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <input type="hidden" id="form-id" value="">
+                    
+                    <div class="space-y-1 md:col-span-2">
+                        <label class="font-etiqueta-sm text-sm text-on-surface-variant">Nombre del Cliente *</label>
+                        <select id="form-cliente" required class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 outline-none cursor-pointer">
+                            <option value="" disabled selected>Selecciona un cliente registrado...</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="font-etiqueta-sm text-sm text-on-surface-variant">Habitación *</label>
+                        <select id="form-habitacion" required class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 outline-none cursor-pointer">
+                            </select>
+                    </div>
+
+                    <div class="space-y-1 md:col-span-2">
+                        <label class="font-etiqueta-sm text-sm text-on-surface-variant">Amenidades</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-surface-container rounded-2xl border border-outline-variant p-4">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="amenidades" value="Desayuno" data-costo="20" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" />
+                                <span class="text-sm text-on-surface">Desayuno ($20)</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="amenidades" value="Minibar" data-costo="35" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" />
+                                <span class="text-sm text-on-surface">Minibar ($35)</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="amenidades" value="Late Check-Out" data-costo="25" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" />
+                                <span class="text-sm text-on-surface">Late Check-Out ($25)</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" name="amenidades" value="Spa Privado" data-costo="60" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" />
+                                <span class="text-sm text-on-surface">Spa Privado ($60)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1 md:col-span-2">
+                        <label class="font-etiqueta-sm text-sm text-on-surface-variant">Cliente preferente</label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" id="form-cliente-vip" class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary" />
+                            <span class="text-sm text-on-surface">Marcar como Cliente VIP (10% de descuento al total de habitación)</span>
+                        </label>
+                    </div>
+
+                    <div class="space-y-1 md:col-span-2">
+                        <p id="cliente-estado-indicador" class="text-xs text-error hidden">Este cliente está inactivo y no puede reservar una habitación.</p>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="font-etiqueta-sm text-sm text-on-surface-variant">Estado *</label>
+                        <select id="form-estado" required class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 outline-none cursor-pointer">
+                            <option value="Confirmado">Confirmado</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Cancelado">Cancelado</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="font-etiqueta-sm text-sm text-on-surface-variant">Check-in *</label>
+                        <input type="date" id="form-checkin" required class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 outline-none">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="font-etiqueta-sm text-sm text-on-surface-variant">Check-out *</label>
+                        <input type="date" id="form-checkout" required class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2.5 outline-none">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="px-6 py-4 border-t border-outline-variant bg-surface flex justify-end gap-3">
+                <button onclick="cerrarModal('modal-form-reserva')" class="px-5 py-2.5 text-on-surface-variant rounded-xl hover:bg-surface-container-high transition-colors">Cancelar</button>
+                <button onclick="guardarReserva()" class="px-6 py-2.5 bg-primary text-on-primary rounded-xl hover:opacity-90 transition-opacity">Guardar Reserva</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-detalle-reserva" class="fixed inset-0 bg-on-background/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-surface-container-lowest rounded-2xl w-full max-w-md shadow-2xl overflow-hidden flex flex-col">
+            <div class="bg-surface-container-low p-6 text-center relative border-b border-outline-variant/50">
+                <button onclick="cerrarModal('modal-detalle-reserva')" class="absolute top-4 right-4 text-on-surface-variant hover:text-error p-1 rounded-full hover:bg-surface-container-highest">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+                <div class="w-20 h-20 mx-auto bg-primary text-on-primary rounded-full flex items-center justify-center text-3xl font-bold mb-3 shadow-md" id="detalle-avatar">--</div>
+                <h3 id="detalle-cliente" class="font-titular-md text-on-surface">Nombre Cliente</h3>
+                <span id="detalle-estado" class="inline-block mt-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-[12px] font-bold uppercase tracking-wide">Estado</span>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="flex justify-between items-center border-b border-outline-variant/30 pb-3">
+                    <span class="text-on-surface-variant text-sm flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">bed</span> Habitación</span>
+                    <span id="detalle-habitacion" class="font-bold text-on-surface">--</span>
+                </div>
+                <div class="flex justify-between items-center border-b border-outline-variant/30 pb-3">
+                    <span class="text-on-surface-variant text-sm flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">calendar_today</span> Fechas</span>
+                    <span id="detalle-fechas" class="font-bold text-on-surface">--</span>
+                </div>
+                <div class="flex justify-between items-center border-b border-outline-variant/30 pb-3">
+                    <span class="text-on-surface-variant text-sm flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">room_service</span> Amenidades</span>
+                    <span id="detalle-amenidades" class="font-bold text-on-surface">Sin extras</span>
+                </div>
+                <div class="flex justify-between items-center border-b border-outline-variant/30 pb-3">
+                    <span class="text-on-surface-variant text-sm flex items-center gap-2"><span class="material-symbols-outlined text-[18px]">attach_money</span> Estimado total</span>
+                    <span id="detalle-total" class="font-bold text-on-surface">$0.00</span>
+                </div>
+                <div class="pt-2 flex gap-3">
+                    <button class="flex-1 bg-surface-container-high text-on-surface py-2 rounded-xl font-etiqueta-sm" onclick="cerrarModal('modal-detalle-reserva')">Cerrar</button>
+                    <button onclick="eliminarReservaActual()" class="flex-1 bg-error text-on-error py-2 rounded-xl font-etiqueta-sm hover:bg-error/90">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-panel-gestion" class="fixed inset-0 bg-on-background/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-surface-container-lowest rounded-2xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
+            <div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface">
+                <h3 class="font-titular-md text-[20px] text-on-surface flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">list_alt</span> Gestión de Reservas
+                </h3>
+                <button onclick="cerrarModal('modal-panel-gestion')" class="text-on-surface-variant hover:text-error p-1 rounded-full hover:bg-error-container">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            
+            <div class="p-0 overflow-y-auto bg-surface-container-lowest">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-surface-container-low border-b border-outline-variant sticky top-0">
+                        <tr>
+                            <th class="p-4 font-etiqueta-sm text-sm text-on-surface-variant">Cliente</th>
+                            <th class="p-4 font-etiqueta-sm text-sm text-on-surface-variant">Habitación</th>
+                            <th class="p-4 font-etiqueta-sm text-sm text-on-surface-variant">Fechas</th>
+                            <th class="p-4 font-etiqueta-sm text-sm text-on-surface-variant">Estado</th>
+                            <th class="p-4 font-etiqueta-sm text-sm text-on-surface-variant text-right">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-gestion-reservas" class="divide-y divide-outline-variant/30">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared.js"></script>
+    <script src="reservas.js"></script>
+</body>
+</html>

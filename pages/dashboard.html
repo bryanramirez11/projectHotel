@@ -1,0 +1,219 @@
+<!doctype html>
+<html class="light" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Panel de Control LuxeStay</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              background:                 "#f6faf8",
+              secondary:                  "#4e6073",
+              error:                      "#ba1a1a",
+              "on-error":                 "#ffffff",
+              "surface-container-high":   "#e4e9e7",
+              "on-surface-variant":       "#3d4947",
+              "secondary-container":      "#cfe2f9",
+              "on-secondary-container":   "#526478",
+              "surface-container-low":    "#f0f5f3",
+              "surface-container":        "#eaefed",
+              primary:                    "#006a63",
+              "on-primary":               "#ffffff",
+              "outline-variant":          "#bdc9c6",
+              surface:                    "#f6faf8",
+              "surface-container-lowest": "#ffffff",
+              "on-surface":               "#171d1c",
+              "error-container":          "#ffdad6",
+              "on-background":            "#171d1c",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f7f9fb; }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+  </head>
+
+  <body class="bg-surface text-on-surface antialiased">
+
+    <!-- SIDEBAR — idéntico a facturacion.html -->
+    <aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-lowest shadow-sm flex flex-col py-6 px-4 z-50">
+      <div class="mb-8">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-primary flex items-center justify-center text-on-primary shadow-sm">
+            <span class="material-symbols-outlined">hotel</span>
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold text-primary">LuxeStay</h1>
+            <p class="text-xs uppercase tracking-[0.22em] text-secondary opacity-80">Gestión Hotelaria</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="flex-1 space-y-1">
+        <a data-nav="dashboard"
+           class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200"
+           href="dashboard.html">
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="text-xs uppercase tracking-[0.05em] font-bold">Panel de Control</span>
+        </a>
+        <a data-nav="habitaciones"
+           class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200"
+           href="habitaciones/habitaciones.html">
+          <span class="material-symbols-outlined">bed</span>
+          <span class="text-xs uppercase tracking-[0.05em] font-bold">Habitaciones</span>
+        </a>
+        <a data-nav="reservas"
+           class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200"
+           href="Reservas/reservas.html">
+          <span class="material-symbols-outlined">calendar_today</span>
+          <span class="text-xs uppercase tracking-[0.05em] font-bold">Reservas</span>
+        </a>
+        <a data-nav="clientes"
+           class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200"
+           href="Clientes/clientes.html">
+          <span class="material-symbols-outlined">group</span>
+          <span class="text-xs uppercase tracking-[0.05em] font-bold">Clientes</span>
+        </a>
+        <a data-nav="facturacion"
+           class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200"
+           href="Facturacion/facturacion.html">
+          <span class="material-symbols-outlined">payments</span>
+          <span class="text-xs uppercase tracking-[0.05em] font-bold">Facturación</span>
+        </a>
+      </nav>
+
+      <div class="mt-auto pt-6 border-t border-outline-variant">
+        <button onclick="logout()"
+          class="w-full py-3 px-4 bg-error text-on-error rounded-xl font-semibold hover:bg-error/90 transition-colors">
+          Cerrar Sesión
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="pt-16 md:pl-[260px] min-h-screen">
+
+      <!-- Header — idéntico a facturacion.html -->
+      <header class="fixed top-0 right-0 left-0 md:left-[260px] h-16 bg-surface/95 backdrop-blur-sm border-b border-outline-variant z-30 flex items-center justify-between px-8">
+        <div class="flex items-center gap-4 flex-1">
+          
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="text-right hidden sm:block">
+            <p id="userName" class="text-sm text-on-surface-variant">Usuario</p>
+            <p class="text-[12px] text-on-surface-variant/70">Sesión activa</p>
+          </div>
+          <img id="userAvatar" alt="Avatar"
+               class="w-10 h-10 rounded-full object-cover border-2 border-primary/20"
+               src="https://ui-avatars.com/api/?name=U&background=006a63&color=fff"/>
+        </div>
+      </header>
+
+      <!-- Contenido -->
+      <div class="p-8 max-w-[1440px] mx-auto pb-24 md:pb-8">
+
+        <!-- Título -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div>
+            <h2 class="text-2xl font-semibold text-on-surface">Facturación y Finanzas</h2>
+            <p class="text-sm text-on-surface-variant">Métricas clave del hotel en tiempo real.</p>
+          </div>
+        </div>
+
+        <!-- 4 tarjetas grandes -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+
+          <!-- Tasa de Ocupación -->
+          <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm p-8 flex flex-col justify-between min-h-[280px] relative overflow-hidden">
+            <div class="flex items-start justify-between">
+              <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary" style="font-size:32px">percent</span>
+              </div>
+              <span id="dashboard-ocupacion-valor" class="text-xs font-bold text-primary uppercase tracking-wider bg-primary/10 px-3 py-1 rounded-full">0%</span>
+            </div>
+            <div class="mt-8">
+              <p class="text-xs font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-2">Tasa de Ocupación</p>
+              <h3 id="dashboard-ocupacion-pct" class="text-6xl font-bold text-on-surface leading-none">0%</h3>
+            </div>
+            <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-primary/5" style="font-size:140px;line-height:1">donut_large</span>
+          </div>
+
+          <!-- Check-ins de Hoy -->
+          <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm p-8 flex flex-col justify-between min-h-[280px] relative overflow-hidden">
+            <div class="flex items-start justify-between">
+              <div class="w-14 h-14 rounded-2xl bg-secondary-container/40 flex items-center justify-center">
+                <span class="material-symbols-outlined text-on-secondary-container" style="font-size:32px">login</span>
+              </div>
+              <span id="dashboard-checkins-label" class="text-xs font-bold text-on-surface-variant uppercase tracking-wider bg-surface-container px-3 py-1 rounded-full">0 reservas</span>
+            </div>
+            <div class="mt-8">
+              <p class="text-xs font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-2">Check-ins de Hoy</p>
+              <h3 id="dashboard-checkins-valor" class="text-6xl font-bold text-on-surface leading-none">0</h3>
+            </div>
+            <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-secondary/5" style="font-size:140px;line-height:1">how_to_reg</span>
+          </div>
+
+          <!-- Ingresos Diarios — tarjeta con fondo primary, igual al card de "Por Cobrar" en facturación -->
+          <div class="bg-primary text-on-primary rounded-2xl shadow-md p-8 flex flex-col justify-between min-h-[280px] relative overflow-hidden">
+            <div class="flex items-start justify-between z-10">
+              <div class="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center">
+                <span class="material-symbols-outlined text-on-primary" style="font-size:32px">payments</span>
+              </div>
+              <span id="dashboard-ingresos-label" class="text-xs font-bold text-on-primary/80 uppercase tracking-wider bg-white/20 px-3 py-1 rounded-full">Desde hoy</span>
+            </div>
+            <div class="mt-8 z-10">
+              <p class="text-xs font-bold uppercase tracking-[0.1em] text-on-primary/80 mb-2">Ingresos (Diarios)</p>
+              <h3 id="dashboard-ingresos-valor" class="text-6xl font-bold text-on-primary leading-none">$0</h3>
+            </div>
+            <span class="material-symbols-outlined absolute -right-4 -bottom-4 opacity-10" style="font-size:140px;line-height:1">account_balance_wallet</span>
+          </div>
+
+          <!-- Pagos Pendientes -->
+          <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm p-8 flex flex-col justify-between min-h-[280px] relative overflow-hidden">
+            <div class="flex items-start justify-between">
+              <div class="w-14 h-14 rounded-2xl bg-error-container/50 flex items-center justify-center">
+                <span class="material-symbols-outlined text-error" style="font-size:32px">pending_actions</span>
+              </div>
+              <span class="text-xs font-bold text-error uppercase tracking-wider bg-error-container/50 px-3 py-1 rounded-full">Atención</span>
+            </div>
+            <div class="mt-8">
+              <p class="text-xs font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-2">Pagos Pendientes</p>
+              <h3 id="dashboard-pendientes-valor" class="text-6xl font-bold text-on-surface leading-none">0</h3>
+            </div>
+            <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-error/5" style="font-size:140px;line-height:1">error</span>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <script src="shared.js"></script>
+    <script>
+      (function () {
+        try {
+          const user   = JSON.parse(localStorage.getItem('currentUser'));
+          const nombre = (user && (user.name || user.username)) || 'U';
+          const avatar = document.getElementById('userAvatar');
+          const uname  = document.getElementById('userName');
+          if (avatar) avatar.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(nombre) + '&background=006a63&color=fff';
+          if (uname)  uname.textContent = nombre;
+        } catch (e) {}
+      })();
+    </script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f7f9fb;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#00433f",
+                      "on-secondary-fixed-variant": "#204877",
+                      "surface-container-low": "#f2f4f6",
+                      "surface-container": "#eceef0",
+                      "surface": "#f7f9fb",
+                      "on-secondary-container": "#2e5484",
+                      "surface-container-lowest": "#ffffff",
+                      "outline-variant": "#bdc9c6",
+                      "inverse-on-surface": "#eff1f3",
+                      "tertiary": "#695c50",
+                      "on-background": "#191c1e",
+                      "tertiary-fixed": "#f2dfd0",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#a5c8ff",
+                      "on-primary-fixed-variant": "#00504a",
+                      "on-surface-variant": "#3d4947",
+                      "on-primary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#f7f9fb",
+                      "inverse-primary": "#71d7cd",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-highest": "#e0e3e5",
+                      "surface-container-high": "#e6e8ea",
+                      "primary-fixed": "#8ef4e9",
+                      "secondary": "#3b6090",
+                      "primary-fixed-dim": "#71d7cd",
+                      "on-tertiary-fixed": "#231a11",
+                      "surface-variant": "#e0e3e5",
+                      "surface-tint": "#006a63",
+                      "on-tertiary-fixed-variant": "#51453a",
+                      "primary-container": "#4db6ac",
+                      "on-secondary-fixed": "#001c3a",
+                      "outline": "#6d7a77",
+                      "background": "#f7f9fb",
+                      "primary": "#006a63",
+                      "inverse-surface": "#2d3133",
+                      "tertiary-container": "#b4a395",
+                      "on-primary-fixed": "#00201d",
+                      "tertiary-fixed-dim": "#d5c3b5",
+                      "on-surface": "#191c1e",
+                      "surface-dim": "#d8dadc",
+                      "on-tertiary-container": "#45392f",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed-dim": "#a5c8ff",
+                      "secondary-fixed": "#d4e3ff"
+              },
+              "spacing": {
+                      "espaciado-tarjeta": "24px",
+                      "base": "8px",
+                      "rejilla-gutter": "24px",
+                      "margen-pantalla": "32px",
+                      "separacion-secciones": "48px",
+                      "sidebar-width": "260px"
+              },
+              "fontFamily": {
+                      "etiqueta-sm": ["Plus Jakarta Sans"],
+                      "titular-xl": ["Plus Jakarta Sans"],
+                      "cuerpo-md": ["Plus Jakarta Sans"],
+                      "dato-numerico": ["Plus Jakarta Sans"],
+                      "titular-lg-movil": ["Plus Jakarta Sans"],
+                      "cuerpo-lg": ["Plus Jakarta Sans"],
+                      "titular-lg": ["Plus Jakarta Sans"],
+                      "titular-md": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "etiqueta-sm": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                      "titular-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "cuerpo-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "dato-numerico": ["20px", {"lineHeight": "24px", "fontWeight": "500"}],
+                      "titular-lg-movil": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "cuerpo-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "titular-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "titular-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- Desktop SideNavBar -->
+<aside class="hidden md:flex fixed left-0 top-0 h-screen w-[260px] flex-col gap-8 py-8 bg-surface dark:bg-surface-dim border-r border-outline-variant dark:border-outline shadow-sm dark:shadow-none z-50">
+<div class="px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">hotel</span>
+</div>
+<div>
+<h1 class="font-titular-md text-titular-md text-primary dark:text-primary-fixed tracking-tight leading-none">LuxeStay</h1>
+<p class="font-etiqueta-sm text-etiqueta-sm text-on-surface-variant/70">Gestión Premier</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col flex-1">
+<a class="text-on-surface-variant dark:text-surface-variant flex items-center gap-3 px-6 py-3 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-etiqueta-sm text-etiqueta-sm uppercase tracking-wider">Panel</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant flex items-center gap-3 px-6 py-3 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">bed</span>
+<span class="font-etiqueta-sm text-etiqueta-sm uppercase tracking-wider">Habitaciones</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant flex items-center gap-3 px-6 py-3 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-etiqueta-sm text-etiqueta-sm uppercase tracking-wider">Reservas</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant flex items-center gap-3 px-6 py-3 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-etiqueta-sm text-etiqueta-sm uppercase tracking-wider">Clientes</span>
+</a>
+<a class="bg-primary-container/10 text-primary dark:text-primary-fixed border-l-4 border-primary flex items-center gap-3 px-6 py-3 hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-etiqueta-sm text-etiqueta-sm uppercase tracking-wider">Facturación</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 rounded-xl font-etiqueta-sm flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add</span>
+                Nueva Reserva
+            </button>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-0 md:left-[260px] h-16 bg-surface/95 dark:bg-surface-dim/95 backdrop-blur-sm border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none z-40 flex items-center justify-between px-8">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary/20 font-cuerpo-md text-cuerpo-md outline-none" placeholder="Buscar facturas o clientes..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-full p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-full p-2 text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3 pl-2">
+<img alt="Avatar del gerente" class="w-10 h-10 rounded-full object-cover border-2 border-primary/20" data-alt="A professional portrait of a boutique hotel manager in a sharp navy blazer, standing in a sunlit, minimalist lobby. The lighting is soft and natural, emphasizing a serene and welcoming atmosphere. The background features clean white walls and light oak wood accents typical of a high-end luxury establishment. His expression is confident yet warm, reflecting exceptional hospitality standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAB_x8K5NZ4c3WD6P1fwMMdeTXm9eDNxBX71K_A83f_72DRxklW6oXFiK9m_02xvEOAQUbJpv06mWBdz1spI41Zy_4Tzu0GpGCe9JD7WFyYNbdOpkjt1uWaglWvgJ1E0iO9kfbK5TaxOXj9RUWj2sq58PYYHV_reFx7lLU7gIF-Ad1cXxPb6lC4gxZPW0IwEVJCcHOmdZeUcAxQYKPMDoc6eZwjksIj1kx9Wg0LJj5bcvLL-0ZyxBjy6oT-N3UtXe1ni2siYw4pekRz"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-16 md:pl-[260px] min-h-screen">
+<div class="p-8 max-w-[1440px] mx-auto">
+<!-- Header & Action -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<h2 class="font-titular-lg text-titular-lg text-on-surface">Facturación y Finanzas</h2>
+<p class="font-cuerpo-md text-cuerpo-md text-on-surface-variant">Gestiona los ingresos, facturas pendientes y reportes detallados.</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-etiqueta-sm flex items-center gap-2 shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">post_add</span>
+                    Generar Factura
+                </button>
+</div>
+<!-- Bento Grid Stats & Revenue Report -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+<!-- Revenue Chart Card -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant shadow-sm flex flex-col gap-6">
+<div class="flex justify-between items-center">
+<div>
+<h3 class="font-titular-md text-titular-md text-on-surface">Ingresos Mensuales</h3>
+<p class="font-etiqueta-sm text-etiqueta-sm text-on-surface-variant">Evolución de los últimos 6 meses</p>
+</div>
+<select class="bg-surface-container-low border-none rounded-lg text-etiqueta-sm px-4 py-2 outline-none">
+<option>2024 - Todo el año</option>
+<option>Últimos 3 meses</option>
+</select>
+</div>
+<!-- Simplified Visual Chart -->
+<div class="flex items-end justify-between h-48 gap-4 px-4 pt-4 border-b border-outline-variant/30">
+<div class="w-full flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary/10 rounded-t-lg h-[40%] group-hover:bg-primary/20 transition-all"></div>
+<span class="text-[10px] font-etiqueta-sm text-on-surface-variant">ENE</span>
+</div>
+<div class="w-full flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary/10 rounded-t-lg h-[65%] group-hover:bg-primary/20 transition-all"></div>
+<span class="text-[10px] font-etiqueta-sm text-on-surface-variant">FEB</span>
+</div>
+<div class="w-full flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary/10 rounded-t-lg h-[55%] group-hover:bg-primary/20 transition-all"></div>
+<span class="text-[10px] font-etiqueta-sm text-on-surface-variant">MAR</span>
+</div>
+<div class="w-full flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary/10 rounded-t-lg h-[80%] group-hover:bg-primary/20 transition-all"></div>
+<span class="text-[10px] font-etiqueta-sm text-on-surface-variant">ABR</span>
+</div>
+<div class="w-full flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary/10 rounded-t-lg h-[95%] group-hover:bg-primary/20 transition-all"></div>
+<span class="text-[10px] font-etiqueta-sm text-on-surface-variant">MAY</span>
+</div>
+<div class="w-full flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary rounded-t-lg h-[70%] shadow-lg shadow-primary/20 transition-all"></div>
+<span class="text-[10px] font-etiqueta-sm text-primary font-bold">JUN</span>
+</div>
+</div>
+</div>
+<!-- Summary Cards -->
+<div class="flex flex-col gap-6">
+<div class="bg-primary text-on-primary p-6 rounded-2xl flex flex-col justify-between h-full relative overflow-hidden">
+<div class="z-10">
+<p class="font-etiqueta-sm text-etiqueta-sm opacity-80 uppercase">Total Pendiente</p>
+<h4 class="font-titular-xl text-titular-xl mt-1">€12,450.00</h4>
+</div>
+<div class="flex items-center gap-2 text-on-primary/80 z-10">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="font-etiqueta-sm text-etiqueta-sm">8 facturas por cobrar</span>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-9xl">account_balance_wallet</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant flex flex-col justify-between h-full">
+<div>
+<p class="font-etiqueta-sm text-etiqueta-sm text-on-surface-variant uppercase">Servicios Extra (Mes)</p>
+<h4 class="font-titular-md text-titular-md text-on-surface mt-1">€3,120.45</h4>
+</div>
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="font-etiqueta-sm text-etiqueta-sm">+12% vs mes anterior</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Transactions Section -->
+<div class="bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<h3 class="font-titular-md text-titular-md text-on-surface">Historial de Transacciones</h3>
+<div class="flex gap-2 w-full sm:w-auto">
+<button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface-variant font-etiqueta-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-base">filter_list</span>
+                            Filtrar
+                        </button>
+<button class="px-4 py-2 rounded-lg bg-surface-container text-on-surface-variant font-etiqueta-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-base">file_download</span>
+                            Exportar
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-6 py-4 font-etiqueta-sm text-etiqueta-sm text-on-surface-variant uppercase tracking-wider">Factura / Fecha</th>
+<th class="px-6 py-4 font-etiqueta-sm text-etiqueta-sm text-on-surface-variant uppercase tracking-wider">Cliente / Habitación</th>
+<th class="px-6 py-4 font-etiqueta-sm text-etiqueta-sm text-on-surface-variant uppercase tracking-wider">Desglose</th>
+<th class="px-6 py-4 font-etiqueta-sm text-etiqueta-sm text-on-surface-variant uppercase tracking-wider">Estado</th>
+<th class="px-6 py-4 font-etiqueta-sm text-etiqueta-sm text-on-surface-variant uppercase tracking-wider text-right">Total</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-etiqueta-sm text-on-surface">INV-2024-089</span>
+<span class="text-[12px] text-on-surface-variant">12 Jun, 2024</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-etiqueta-sm text-on-surface">Julianne Moore</span>
+<span class="text-[12px] text-on-surface-variant">Suite Real #402</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-1 bg-surface-container rounded text-[10px] font-etiqueta-sm">Estancia</span>
+<span class="px-2 py-1 bg-surface-container rounded text-[10px] font-etiqueta-sm">Spa</span>
+<span class="px-2 py-1 bg-surface-container rounded text-[10px] font-etiqueta-sm">Bar</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 text-green-700 text-[12px] font-etiqueta-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                        Completada
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right font-dato-numerico text-dato-numerico text-on-surface">
+                                    €1,850.00
+                                </td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-etiqueta-sm text-on-surface">INV-2024-090</span>
+<span class="text-[12px] text-on-surface-variant">14 Jun, 2024</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-etiqueta-sm text-on-surface">Marcus Aurelius</span>
+<span class="text-[12px] text-on-surface-variant">Hab. Deluxe #105</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-1 bg-surface-container rounded text-[10px] font-etiqueta-sm">Estancia</span>
+<span class="px-2 py-1 bg-surface-container rounded text-[10px] font-etiqueta-sm">Restaurante</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-[12px] font-etiqueta-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+                                        Pendiente
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right font-dato-numerico text-dato-numerico text-on-surface">
+                                    €420.50
+                                </td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-etiqueta-sm text-on-surface">INV-2024-091</span>
+<span class="text-[12px] text-on-surface-variant">15 Jun, 2024</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="font-etiqueta-sm text-on-surface">Elena Rodriguez</span>
+<span class="text-[12px] text-on-surface-variant">Hab. Estándar #208</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-1 bg-surface-container rounded text-[10px] font-etiqueta-sm">Estancia</span>
+<span class="px-2 py-1 bg-surface-container rounded text-[10px] font-etiqueta-sm">Lavandería</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 text-green-700 text-[12px] font-etiqueta-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-green-600"></span>
+                                        Completada
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right font-dato-numerico text-dato-numerico text-on-surface">
+                                    €295.00
+                                </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center">
+<span class="text-etiqueta-sm text-on-surface-variant">Mostrando 3 de 145 facturas</span>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-base">chevron_left</span>
+</button>
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-base">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/95 backdrop-blur-md border-t border-outline-variant z-50 flex items-center justify-around py-3 px-4 shadow-lg">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-etiqueta-sm">Panel</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">bed</span>
+<span class="text-[10px] font-etiqueta-sm">Rooms</span>
+</a>
+<div class="relative -top-6">
+<button class="w-14 h-14 bg-primary rounded-full shadow-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-etiqueta-sm">Clients</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="text-[10px] font-etiqueta-sm font-bold">Billing</span>
+</a>
+</nav>
+</body></html>

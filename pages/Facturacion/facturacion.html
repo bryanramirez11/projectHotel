@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Facturación - LuxeStay</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f7f9fb; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .chart-bar { transition: height 0.5s ease-in-out, background-color 0.3s ease; }
+
+        @media print {
+            .md\:pl-\[260px\] { padding-left: 0 !important; }
+            .bg-surface-container-lowest { border: 1px solid #e2e8f0 !important; box-shadow: none !important; }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                  error: "#ba1a1a", "on-error": "#ffffff", "surface-container-low": "#f2f4f6", 
+                  "surface-container": "#eceef0", surface: "#f7f9fb", "surface-container-lowest": "#ffffff", 
+                  "outline-variant": "#bdc9c6", "on-background": "#191c1e", "on-surface-variant": "#3d4947", 
+                  "on-primary": "#ffffff", primary: "#006a63", "on-surface": "#191c1e"
+              },
+              fontFamily: {
+                  "etiqueta-sm": ["Plus Jakarta Sans"], "titular-xl": ["Plus Jakarta Sans"],
+                  "cuerpo-md": ["Plus Jakarta Sans"], "dato-numerico": ["Plus Jakarta Sans"],
+                  "titular-lg": ["Plus Jakarta Sans"], "titular-md": ["Plus Jakarta Sans"]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+    <aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-lowest shadow-sm flex flex-col py-6 px-4 z-50">
+        <div class="mb-8">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-primary flex items-center justify-center text-on-primary shadow-sm">
+                    <span class="material-symbols-outlined">hotel</span>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-primary">LuxeStay</h1>
+                    <p class="text-xs uppercase tracking-[0.22em] text-secondary opacity-80">Gestión Hotelaria</p>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a data-nav="dashboard" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../dashboard.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="font-label-caps text-label-caps">Panel de Control</span>
+            </a>
+            <a data-nav="habitaciones" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../habitaciones/habitaciones.html">
+                <span class="material-symbols-outlined">bed</span>
+                <span class="font-label-caps text-label-caps">Habitaciones</span>
+            </a>
+            <a data-nav="reservas" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../Reservas/reservas.html">
+                <span class="material-symbols-outlined">calendar_today</span>
+                <span class="font-label-caps text-label-caps">Reservas</span>
+            </a>
+            <a data-nav="clientes" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../Clientes/clientes.html">
+                <span class="material-symbols-outlined">group</span>
+                <span class="font-label-caps text-label-caps">Clientes</span>
+            </a>
+            <a data-nav="facturacion" class="app-nav-item flex items-center gap-3 px-4 py-3 rounded-r-full border-l-4 border-transparent text-secondary hover:bg-surface-container-high transition-all duration-200" href="../Facturacion/facturacion.html">
+                <span class="material-symbols-outlined">payments</span>
+                <span class="font-label-caps text-label-caps">Facturación</span>
+            </a>
+        </nav>
+        <div class="mt-auto pt-6 border-t border-outline-variant">
+            <button onclick="logout()" class="w-full py-3 px-4 bg-error text-on-error rounded-xl font-semibold hover:bg-error/90 transition-colors">Cerrar Sesión</button>
+        </div>
+    </aside>
+
+    <header class="fixed top-0 right-0 left-0 md:left-[260px] h-16 bg-surface/95 backdrop-blur-sm border-b border-outline-variant z-30 flex items-center justify-between px-8">
+        <div class="flex items-center gap-4 flex-1">
+            
+        </div>
+        <div class="flex items-center gap-2">
+            <div class="text-right hidden sm:block">
+                <p id="userName" class="font-etiqueta-sm text-on-surface-variant">Usuario</p>
+                <p class="text-[12px] text-on-surface-variant/70">Sesión activa</p>
+            </div>
+            <img alt="Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-primary/20" src="https://ui-avatars.com/api/?name=Usuario&background=006a63&color=fff"/>
+        </div>
+    </header>
+
+    <main class="pt-16 md:pl-[260px] min-h-screen">
+        <div class="p-8 max-w-[1440px] mx-auto pb-24 md:pb-8">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                <div>
+                    <h2 class="font-titular-lg text-titular-lg text-on-surface font-semibold">Facturación y Finanzas</h2>
+                    <p class="font-cuerpo-md text-cuerpo-md text-on-surface-variant">Genera facturas a partir de tus reservas existentes.</p>
+                </div>
+                <button onclick="abrirModalFactura()" class="no-print bg-primary text-on-primary px-6 py-3 rounded-xl font-etiqueta-sm flex items-center gap-2 hover:opacity-90 transition-opacity">
+                    <span class="material-symbols-outlined">post_add</span> Generar Factura
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+                <div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant shadow-sm flex flex-col gap-6">
+                    <div class="flex justify-between items-center">
+                        <h3 class="font-titular-md text-titular-md text-on-surface font-semibold">Ingresos Mensuales</h3>
+                        <select id="filtro-grafica" onchange="actualizarGrafica()" class="no-print bg-surface-container-low border-none rounded-lg px-4 py-2 outline-none">
+                            <option value="6meses">Últimos 6 meses</option>
+                            <option value="3meses">Últimos 3 meses</option>
+                        </select>
+                    </div>
+                    <div id="contenedor-grafica" class="flex items-end justify-between h-48 gap-4 px-4 pt-4 border-b border-outline-variant/30"></div>
+                </div>
+
+                <div class="flex flex-col gap-6">
+                    <div class="bg-primary text-on-primary p-6 rounded-2xl flex flex-col justify-between h-full relative overflow-hidden shadow-md">
+                        <div class="z-10">
+                            <p class="font-etiqueta-sm text-etiqueta-sm opacity-80 uppercase tracking-wider">Por Cobrar (Pendiente)</p>
+                            <h4 id="monto-pendiente" class="font-titular-xl text-titular-xl mt-1 font-bold">$0.00</h4>
+                        </div>
+                        <div class="flex items-center gap-2 text-on-primary/90 z-10 mt-4">
+                            <span class="material-symbols-outlined text-sm">schedule</span>
+                            <span id="contador-pendientes" class="font-etiqueta-sm text-etiqueta-sm">0 facturas</span>
+                        </div>
+                        <span class="material-symbols-outlined text-9xl absolute -right-4 -bottom-4 opacity-10">account_balance_wallet</span>
+                    </div>
+                    
+                    <div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant shadow-sm flex flex-col justify-between h-full">
+                        <div>
+                            <p class="font-etiqueta-sm text-etiqueta-sm text-on-surface-variant uppercase tracking-wider">Ingresos Completados</p>
+                            <h4 id="monto-total-recaudado" class="font-titular-md text-titular-md text-on-surface mt-1 font-semibold text-primary">$0.00</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface-container-low/30">
+                    <h3 class="font-titular-md text-titular-md text-on-surface font-semibold">Historial de Facturas</h3>
+                    <button onclick="printFacturas()" class="no-print px-4 py-2 rounded-lg bg-surface-container text-on-surface-variant font-etiqueta-sm flex items-center gap-2 hover:bg-surface-variant transition-colors">
+                        <span class="material-symbols-outlined text-base">print</span> Imprimir
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-surface-container-low border-b border-outline-variant">
+                            <tr>
+                                <th class="px-6 py-4 font-etiqueta-sm text-xs text-on-surface-variant uppercase tracking-wider font-bold">Factura / Fecha</th>
+                                <th class="px-6 py-4 font-etiqueta-sm text-xs text-on-surface-variant uppercase tracking-wider font-bold">Cliente / Habitación</th>
+                                <th class="px-6 py-4 font-etiqueta-sm text-xs text-on-surface-variant uppercase tracking-wider font-bold">Conceptos</th>
+                                <th class="px-6 py-4 font-etiqueta-sm text-xs text-on-surface-variant uppercase tracking-wider font-bold">Estado</th>
+                                <th class="px-6 py-4 font-etiqueta-sm text-xs text-on-surface-variant uppercase tracking-wider font-bold">Acciones</th>
+                                <th class="px-6 py-4 font-etiqueta-sm text-xs text-on-surface-variant uppercase tracking-wider font-bold text-right">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-facturas" class="divide-y divide-outline-variant">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal-factura" class="fixed inset-0 bg-on-background/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 no-print">
+        <div class="bg-surface-container-lowest rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col">
+            <div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+                <h3 class="font-titular-md text-[20px] text-primary font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined">receipt_long</span> Emitir Factura
+                </h3>
+                <button onclick="cerrarModalFactura()" class="material-symbols-outlined hover:text-error transition-colors">close</button>
+            </div>
+            
+            <div class="p-6">
+                <form id="form-nueva-factura" class="space-y-4" onsubmit="guardarFactura(event)">
+                    
+                    <div>
+                        <label class="font-etiqueta-sm text-sm text-on-surface-variant font-bold">Seleccionar Reserva Existente *</label>
+                        <select id="factura-reserva" required onchange="autocompletarDesdeReserva()" class="w-full mt-1 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 outline-none focus:border-primary">
+                            <option value="">Seleccione una reserva de la lista...</option>
+                            </select>
+                        <p id="error-reservas" class="text-xs mt-1 text-error hidden">No hay reservas registradas en el sistema.</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Cliente</label>
+                            <input type="text" id="factura-cliente" required readonly placeholder="-" class="w-full mt-1 bg-surface-container text-on-surface-variant border border-outline-variant rounded-lg px-4 py-2 outline-none cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Habitación</label>
+                            <input type="text" id="factura-habitacion" required readonly placeholder="-" class="w-full mt-1 bg-surface-container text-on-surface-variant border border-outline-variant rounded-lg px-4 py-2 outline-none cursor-not-allowed">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Noches</label>
+                            <input type="text" id="factura-noches" readonly placeholder="-" class="w-full mt-1 bg-surface-container text-on-surface-variant border border-outline-variant rounded-lg px-4 py-2 outline-none cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Cliente VIP</label>
+                            <input type="text" id="factura-cliente-vip" readonly placeholder="-" class="w-full mt-1 bg-surface-container text-on-surface-variant border border-outline-variant rounded-lg px-4 py-2 outline-none cursor-not-allowed">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Costo Habitación</label>
+                            <input type="text" id="factura-costo-habitacion" readonly placeholder="-" class="w-full mt-1 bg-surface-container text-on-surface-variant border border-outline-variant rounded-lg px-4 py-2 outline-none cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Costo Amenidades</label>
+                            <input type="text" id="factura-costo-amenidades" readonly placeholder="-" class="w-full mt-1 bg-surface-container text-on-surface-variant border border-outline-variant rounded-lg px-4 py-2 outline-none cursor-not-allowed">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant">Ajuste Cliente</label>
+                            <input type="text" id="factura-costo-cliente" readonly placeholder="-" class="w-full mt-1 bg-surface-container text-on-surface-variant border border-outline-variant rounded-lg px-4 py-2 outline-none cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="font-etiqueta-sm text-sm text-on-surface-variant font-bold text-primary">Total a Cobrar ($) *</label>
+                            <input type="text" id="factura-total" readonly class="w-full mt-1 bg-surface-container text-on-surface border border-outline-variant rounded-lg px-4 py-2 outline-none font-bold text-lg focus:border-primary" placeholder="0.00">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="font-etiqueta-sm text-sm text-on-surface-variant">Extras (Separados por coma)</label>
+                        <input type="text" id="factura-conceptos" placeholder="Ej. Room Service, Minibar" class="w-full mt-1 bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 outline-none focus:border-primary">
+                    </div>
+                    <!-- Estado de cobro eliminado: se calcula por defecto en el guardado -->
+
+
+                    <div class="pt-4 flex justify-end gap-3 border-t border-outline-variant mt-6">
+                        <button type="button" onclick="cerrarModalFactura()" class="px-5 py-2.5 rounded-xl hover:bg-surface-container-high transition-colors font-etiqueta-sm font-semibold text-on-surface-variant">Cancelar</button>
+                        <button type="submit" class="px-6 py-2.5 bg-primary text-on-primary rounded-xl hover:opacity-90 transition-opacity font-etiqueta-sm font-bold flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[18px]">save</span> Guardar Factura
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared.js"></script>
+    <script src="facturacion.js"></script>
+</body>
+</html>
