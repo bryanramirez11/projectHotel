@@ -207,7 +207,7 @@ function guardarCliente() {
         direccion: document.getElementById('form-direccion').value,
         estado: document.getElementById('form-estado').value,
         empresa: document.getElementById('form-empresa').value,
-        foto: document.getElementById('form-foto').value,
+        foto: document.getElementById('form-foto')?.value || '',
         observaciones: document.getElementById('form-observaciones').value
     };
 
@@ -244,7 +244,8 @@ function editarCliente(id) {
     document.getElementById('form-direccion').value = cliente.direccion;
     document.getElementById('form-estado').value = cliente.estado;
     document.getElementById('form-empresa').value = cliente.empresa || '';
-    document.getElementById('form-foto').value = cliente.foto || '';
+    const formFoto = document.getElementById('form-foto');
+    if (formFoto) formFoto.value = cliente.foto || '';
     document.getElementById('form-observaciones').value = cliente.observaciones || '';
     
     document.getElementById('modal-titulo').innerText = `Ficha de Cliente: ${cliente.id}`;

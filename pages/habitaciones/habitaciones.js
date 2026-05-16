@@ -43,7 +43,7 @@ function guardarHabitacion() {
     }
 
     const id = document.getElementById('form-id').value;
-    const imagenIngresada = document.getElementById('form-img').value.trim();
+    const imagenIngresada = document.getElementById('form-img')?.value.trim() || '';
 
     const habitacionData = {
         numero: document.getElementById('form-numero').value,
@@ -223,7 +223,8 @@ function abrirModalEdicion(id) {
     document.getElementById('form-estado').value = hab.estado;
     document.getElementById('form-precio').value = hab.precio;
     document.getElementById('form-capacidad').value = hab.capacidad;
-    document.getElementById('form-img').value = hab.img === IMAGEN_DEFAULT ? '' : hab.img;
+    const formImg = document.getElementById('form-img');
+    if (formImg) formImg.value = hab.img === IMAGEN_DEFAULT ? '' : hab.img;
 
     document.getElementById('modal-titulo').innerText = `Editar Habitación ${hab.numero}`;
     abrirModal('modal-formulario');
