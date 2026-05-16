@@ -701,3 +701,19 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarFacturas();
     actualizarGrafica();
 });
+
+// Exponer funciones para los handlers inline cuando se carga como módulo
+window.abrirModalFactura = abrirModalFactura;
+window.toggleEstadoFactura = toggleEstadoFactura;
+window.descargarPDF = descargarPDF;
+window.eliminarFactura = eliminarFactura;
+window.cerrarModalFactura = cerrarModalFactura;
+window.autocompletarDesdeReserva = autocompletarDesdeReserva;
+window.guardarFactura = guardarFactura;
+window.printFacturas = printFacturas;
+window.actualizarGrafica = actualizarGrafica;
+window.cargarFacturas = cargarFacturas;
+window.inicializarFacturas = inicializarFacturas;
+window.sincronizarFacturasPendientes = sincronizarFacturasPendientes;
+window.obtenerDatosGlobales = obtenerDatosGlobales;
+window.nombreUsuarioActivo = nombreUsuarioActivo;

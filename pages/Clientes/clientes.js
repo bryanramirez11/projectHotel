@@ -265,3 +265,15 @@ function eliminarCliente(id) {
 function moduloEnConstruccion(nombreModulo) {
     alert(`El módulo de ${nombreModulo} se encuentra en construcción. ¡Pronto estará disponible!`);
 }
+
+// Exponer funciones para los handlers inline cuando se carga como módulo
+window.cambiarPestana = cambiarPestana;
+window.aplicarBusqueda = aplicarBusqueda;
+window.cambiarPagina = cambiarPagina;
+window.abrirModal = abrirModal;
+window.cerrarModal = cerrarModal;
+window.abrirModalNuevoCliente = abrirModalNuevoCliente;
+window.guardarCliente = guardarCliente;
+window.editarCliente = editarCliente;
+window.eliminarCliente = eliminarCliente;
+window.moduloEnConstruccion = moduloEnConstruccion;

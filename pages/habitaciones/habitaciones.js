@@ -258,3 +258,11 @@ function verDetalles(id) {
 
     abrirModal('modal-detalles');
 }
+// Exponer funciones para los handlers inline cuando se carga como módulo
+window.verDetalles = verDetalles;
+window.abrirModalEdicion = abrirModalEdicion;
+window.eliminarHabitacion = eliminarHabitacion;
+window.abrirModalFormulario = abrirModalFormulario;
+window.guardarHabitacion = guardarHabitacion;
+window.cerrarModal = cerrarModal;
+window.abrirModal = abrirModal;

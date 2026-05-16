@@ -559,3 +559,17 @@ function verDetallesReserva(id) {
 
     abrirModal('modal-detalle-reserva');
 }
+// Exponer funciones para los handlers inline cuando se carga como módulo
+window.abrirModalNuevaReserva = abrirModalNuevaReserva;
+window.abrirPanelGestion = abrirPanelGestion;
+window.cerrarModal = cerrarModal;
+window.abrirModal = abrirModal;
+window.guardarReserva = guardarReserva;
+window.eliminarReservaActual = eliminarReservaActual;
+window.eliminarReservaPorId = eliminarReservaPorId;
+window.verDetallesReserva = verDetallesReserva;
+window.abrirModalReserva = abrirModalReserva;
+window.verDetalles = verDetalles;
+window.actualizarIndicadorClienteSeleccionado = actualizarIndicadorClienteSeleccionado;
+window.cargarHabitacionesEnSelect = cargarHabitacionesEnSelect;
+window.cargarClientesEnSelect = cargarClientesEnSelect;
